@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Download, RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import html2canvas from "html2canvas";
 
 interface LaunchPassProps {
     name: string;
@@ -18,11 +17,12 @@ interface LaunchPassProps {
 export function LaunchPass({ name, persona }: LaunchPassProps) {
     const [isFlipped, setIsFlipped] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const frontRef = useRef<HTMLDivElement>(null);
 
     const handleDownload = async () => {
-      if (!cardRef.current) return;
+      if (!cardRef.current || !frontRef.current) return;
 
-      const node = cardRef.current;
+      const node = frontRef.current;
 
       // Make sure front side is visible for the snapshot
       const wasFlipped = isFlipped;
@@ -32,16 +32,24 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
       await new Promise((r) => setTimeout(r, 600));
 
       try {
-        const dataUrl = await htmlToImage.toPng(node, {
+        // Temporarily remove rotation to avoid mirrored snapshots
+        const originalTransform = cardRef.current.style.transform;
+        cardRef.current.style.transform = "none";
+
+        const dataUrl = await htmlToImage.toJpeg(node, {
           cacheBust: true,
           pixelRatio: 2,
+          quality: 0.95,
           backgroundColor: undefined,
         });
 
         const link = document.createElement("a");
-        link.download = `AWS-Launch-Pass-${name}.png`;
+        link.download = `AWS-Launch-Pass-${name}.jpg`;
         link.href = dataUrl;
         link.click();
+
+        // Restore transform
+        cardRef.current.style.transform = originalTransform;
       } catch (err) {
         console.error("Download failed", err);
         alert("Failed to generate image. Try again.");
@@ -63,7 +71,10 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                     ref={cardRef}
                 >
                     {/* Front Side */}
-                    <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden bg-metal-glossy cursor-target">
+                    <div
+                        className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden bg-metal-glossy cursor-target"
+                        ref={frontRef}
+                    >
                         {/* Background Art */}
                         <div className="absolute inset-0 bg-linear-to-br from-black via-gray-900 to-black" />
                         <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-10" />
