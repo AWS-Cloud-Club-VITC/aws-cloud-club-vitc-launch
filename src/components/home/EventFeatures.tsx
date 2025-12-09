@@ -81,14 +81,14 @@ export function EventFeatures() {
                                 <div className={`h-48 w-full ${feature.image} relative overflow-hidden`}>
                                     <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500" />
                                     {/* Metallic Overlay on Image */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
 
                                     <div className="absolute inset-0 flex items-center justify-center text-white/20 text-4xl font-bold transform group-hover:scale-110 transition-transform duration-700">
                                         <feature.icon className="h-20 w-20 opacity-20 group-hover:opacity-100 group-hover:text-yellow-500/20 transition-all duration-500" />
                                     </div>
                                 </div>
                                 <CardHeader className="relative z-10 -mt-10 px-6">
-                                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-gray-900 to-black border border-white/10 text-yellow-500 shadow-lg group-hover:scale-110 group-hover:border-yellow-500/50 transition-all duration-300">
+                                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br from-gray-900 to-black border border-white/10 text-yellow-500 shadow-lg group-hover:scale-110 group-hover:border-yellow-500/50 transition-all duration-300">
                                         <feature.icon className="h-7 w-7" />
                                     </div>
                                     <CardTitle className="text-xl text-white font-heading tracking-wide group-hover:text-yellow-400 transition-colors">{feature.title}</CardTitle>

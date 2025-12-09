@@ -81,7 +81,7 @@ export function EventReveal() {
                     Access Granted
                 </motion.div>
                 <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
-                    Your Mission, <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">{name}</span>
+                    Your Mission, <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">{name}</span>
                 </h1>
                 <p className="text-xl text-muted-foreground">
                     Welcome to the inner circle. Here is what awaits you.
@@ -112,7 +112,7 @@ export function EventReveal() {
                 <Button
                     onClick={handleCompleteMission}
                     size="lg"
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-purple-500/25 transition-all hover:scale-105"
+                    className="bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-purple-500/25 transition-all hover:scale-105"
                 >
                     Complete Your Mission
                 </Button>

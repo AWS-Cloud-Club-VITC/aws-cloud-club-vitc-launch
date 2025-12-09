@@ -49,7 +49,7 @@ export function CustomCursor() {
         }
       `}</style>
             <motion.div
-                className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
+                className="fixed top-0 left-0 z-9999 pointer-events-none mix-blend-difference"
                 animate={{
                     x: mousePosition.x - 16,
                     y: mousePosition.y - 16,
@@ -67,8 +67,8 @@ export function CustomCursor() {
                     <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-primary -translate-x-1/2 -translate-y-1/2 rounded-full" />
 
                     {/* Crosshair Lines */}
-                    <div className="absolute top-0 left-1/2 w-[1px] h-full bg-white/50 -translate-x-1/2" />
-                    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/50 -translate-y-1/2" />
+                    <div className="absolute top-0 left-1/2 w-px h-full bg-white/50 -translate-x-1/2" />
+                    <div className="absolute top-1/2 left-0 w-full h-px bg-white/50 -translate-y-1/2" />
 
                     {/* Outer Ring Segments (Target Lock Look) */}
                     <motion.div

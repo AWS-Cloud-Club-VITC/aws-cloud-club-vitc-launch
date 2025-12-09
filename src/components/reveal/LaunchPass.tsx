@@ -1,5 +1,5 @@
 "use client";
-
+import * as htmlToImage from "html-to-image";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Download, RotateCw } from "lucide-react";
@@ -20,33 +20,37 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
     const cardRef = useRef<HTMLDivElement>(null);
 
     const handleDownload = async () => {
-        if (!cardRef.current) return;
+      if (!cardRef.current) return;
 
-        // Ensure the card is showing the front for the screenshot
-        const wasFlipped = isFlipped;
-        if (wasFlipped) setIsFlipped(false);
+      const node = cardRef.current;
 
-        // Wait for flip animation or state update
-        setTimeout(async () => {
-            if (!cardRef.current) return;
-            try {
-                const canvas = await html2canvas(cardRef.current, {
-                    backgroundColor: null,
-                    scale: 2, // Higher resolution
-                    useCORS: true,
-                });
+      // Make sure front side is visible for the snapshot
+      const wasFlipped = isFlipped;
+      if (wasFlipped) setIsFlipped(false);
 
-                const link = document.createElement("a");
-                link.download = `AWS-Launch-Pass-${name}.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            } catch (err) {
-                console.error("Download failed", err);
-            } finally {
-                if (wasFlipped) setIsFlipped(true);
-            }
-        }, 600);
+      // wait for flip animation
+      await new Promise((r) => setTimeout(r, 600));
+
+      try {
+        const dataUrl = await htmlToImage.toPng(node, {
+          cacheBust: true,
+          pixelRatio: 2,
+          backgroundColor: undefined,
+        });
+
+        const link = document.createElement("a");
+        link.download = `AWS-Launch-Pass-${name}.png`;
+        link.href = dataUrl;
+        link.click();
+      } catch (err) {
+        console.error("Download failed", err);
+        alert("Failed to generate image. Try again.");
+      } finally {
+        if (wasFlipped) setIsFlipped(true);
+      }
     };
+
+
 
     return (
         <div className="flex flex-col items-center gap-8 py-10">
@@ -61,15 +65,15 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                     {/* Front Side */}
                     <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden bg-metal-glossy cursor-target">
                         {/* Background Art */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+                        <div className="absolute inset-0 bg-linear-to-br from-black via-gray-900 to-black" />
                         <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-10" />
                         <div className="absolute -top-20 -right-20 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl" />
-                        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" />
+                        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-linear-to-t from-black to-transparent" />
 
                         {/* Content */}
                         <div className="relative z-10 h-full flex flex-col justify-between p-6 sm:p-8">
                             <div className="flex justify-between items-start">
-                                <div className="h-10 w-10 flex items-center justify-center rounded bg-gradient-to-br from-yellow-500 to-yellow-700 text-black font-bold text-xl shadow-lg shadow-yellow-500/20">
+                                <div className="h-10 w-10 flex items-center justify-center rounded bg-linear-to-br from-yellow-500 to-yellow-700 text-black font-bold text-xl shadow-lg shadow-yellow-500/20">
                                     A
                                 </div>
                                 <div className="text-right">
@@ -86,7 +90,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
 
                                 <div>
                                     <p className="text-xs text-yellow-500/80 uppercase tracking-widest mb-1">Cloud Persona</p>
-                                    <h4 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 font-heading">
+                                    <h4 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-yellow-200 via-yellow-400 to-yellow-600 font-heading">
                                         {persona.title}
                                     </h4>
                                 </div>
@@ -113,7 +117,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                         className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden bg-metal-glossy cursor-target"
                         style={{ transform: "rotateY(180deg)" }}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-bl from-black via-gray-900 to-black" />
+                        <div className="absolute inset-0 bg-linear-to-bl from-black via-gray-900 to-black" />
                         <div className="relative z-10 h-full flex flex-col items-center justify-center p-8 text-center space-y-6">
                             <div className="h-16 w-16 flex items-center justify-center rounded-full bg-white/5 backdrop-blur-md mb-4 border border-white/10">
                                 <RotateCw className="h-8 w-8 text-yellow-500" />

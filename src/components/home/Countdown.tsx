@@ -12,7 +12,7 @@ export function Countdown() {
     });
 
     useEffect(() => {
-        const targetDate = new Date("2026-01-19T00:00:00");
+        const targetDate = new Date("2026-01-06T00:00:00");
 
         const interval = setInterval(() => {
             const now = new Date();
@@ -35,8 +35,8 @@ export function Countdown() {
 
     const TimeUnit = ({ value, label }: { value: number; label: string }) => (
         <div className="flex flex-col items-center justify-center rounded-xl bg-metal-glossy p-4 backdrop-blur-md w-24 h-24 sm:w-32 sm:h-32 border border-white/10 shadow-[0_0_30px_-10px_rgba(255,215,0,0.1)] relative group overflow-hidden hover:scale-105 transition-transform duration-300">
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-linear-to-tr from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <span className="text-3xl sm:text-5xl font-bold text-white font-heading relative z-10 drop-shadow-[0_2px_10px_rgba(255,215,0,0.3)]">
                 {value.toString().padStart(2, "0")}
@@ -48,7 +48,7 @@ export function Countdown() {
     );
 
     return (
-        <section className="py-10 relative z-20">
+        <section className="py-8 md:py-10 relative z-20">
             <div className="container mx-auto px-4">
                 <div className="mb-8 text-center">
                     <h2 className="text-2xl font-bold text-white/80 font-heading tracking-widest uppercase">The Countdown Has Begun</h2>

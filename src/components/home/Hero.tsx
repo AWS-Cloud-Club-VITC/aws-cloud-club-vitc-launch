@@ -20,7 +20,7 @@ export function Hero() {
     };
 
     return (
-        <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pt-20 pb-10 overflow-hidden">
+        <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pb-10 overflow-hidden">
             {/* Background Effects */}
             <Starfield starCount={200} speed={0.2} />
             <div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -35,6 +35,9 @@ export function Hero() {
                     </h1>
                     <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
                         Witness a new era in cloud technology. Join the elite community of builders, innovators, and dreamers. Generate your exclusive invitation now.
+                    </p>
+                    <p className="text-4xl sm:text-5xl font-heading font-bold tracking-wide text-left ml-1 lg:ml-4 text-gradient">
+                        RECRUITMENTS WILL BE OPENED SOON
                     </p>
                 </div>
 

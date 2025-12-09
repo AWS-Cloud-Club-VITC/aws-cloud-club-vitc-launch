@@ -8,90 +8,175 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 interface InvitationGeneratorProps {
-    onGenerate: (name: string) => void;
-    isLoading: boolean;
+  onGenerate: (name: string) => void;
+  isLoading: boolean;
 }
 
-export function InvitationGenerator({ onGenerate, isLoading }: InvitationGeneratorProps) {
-    const [name, setName] = useState("");
-    const [error, setError] = useState("");
+export function InvitationGenerator({
+  onGenerate,
+  isLoading,
+}: InvitationGeneratorProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [localLoading, setLocalLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [info, setInfo] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!name.trim()) {
-            setError("Please enter your name.");
-            return;
-        }
-        if (name.length < 2) {
-            setError("Name must be at least 2 characters.");
-            return;
-        }
-        setError("");
-        onGenerate(name);
-    };
+  const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-md mx-auto"
-        >
-            <Card className="bg-metal-glossy p-6 sm:p-8 relative overflow-hidden group">
-                {/* Metallic Sheen Effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setInfo(null);
 
-                <div className="space-y-6 relative z-10">
-                    <div className="space-y-2 text-center">
-                        <h3 className="text-2xl font-bold text-white font-heading tracking-wide">
-                            <span className="text-metal-gradient">Get Your Invite</span>
-                        </h3>
-                        <p className="text-muted-foreground text-sm">
-                            Enter your name to generate your exclusive AI-powered invitation.
-                        </p>
-                    </div>
+    // name validations
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (name.trim().length < 2) {
+      setError("Name must be at least 2 characters.");
+      return;
+    }
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="space-y-2">
-                            <Input
-                                type="text"
-                                placeholder="Enter your full name"
-                                value={name}
-                                onChange={(e) => {
-                                    setName(e.target.value);
-                                    if (error) setError("");
-                                }}
-                                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
-                                disabled={isLoading}
-                            />
-                            {error && (
-                                <div className="flex items-center gap-2 text-sm text-red-400">
-                                    <AlertCircle className="h-4 w-4" />
-                                    <span>{error}</span>
-                                </div>
-                            )}
-                        </div>
+    // email validations
+    // must end with .vitstudent.ac.in
+    const validateEmail = (e: string) =>
+      /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/.test(e);
+    
+    if (!validateEmail(email.trim())) {
+      setError("Enter VIT email id");
+      return;
+    }
 
-                        <Button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/10 transition-all hover:scale-[1.02]"
-                        >
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                    Generating...
-                                </>
-                            ) : (
-                                <>
-                                    Generate My Invitation
-                                    <Send className="ml-2 h-5 w-5" />
-                                </>
-                            )}
-                        </Button>
-                    </form>
+    setError("");
+    setLocalLoading(true);
+
+    try {
+      const res = await fetch("/api/invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim() }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        // server returned an error
+        setError(data?.error || "Something went wrong. Please try again.");
+        setLocalLoading(false);
+        return;
+      }
+
+      // data.status: "exists" | "created"
+      if (data.status === "exists") {
+        // DO NOT proceed to next page — show message and stay on same page.
+        setInfo("This email is already registered.");
+        setLocalLoading(true);
+        onGenerate(name.trim());
+        return; // IMPORTANT: stop here, do not call onGenerate
+      } else if (data.status === "created") {
+        setInfo("You are registered! Continuing...");
+        // proceed with parent flow only when a new record was created
+        onGenerate(name.trim());
+      } else {
+        // unexpected but safe fallback: don't proceed automatically
+        setInfo("Received response. Please proceed manually.");
+      }
+    } catch (err) {
+      console.error("Invite submit error:", err);
+      setError("Network error. Please try again.");
+    } finally {
+      setLocalLoading(false);
+    }
+  };
+
+  const disabled = isLoading || localLoading;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-md mx-auto"
+    >
+      <Card className="bg-metal-glossy p-6 sm:p-8 relative overflow-hidden group">
+        {/* Metallic Sheen Effect */}
+        <div className="absolute inset-0 bg-linear-to-tr from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+        <div className="space-y-6 relative z-10">
+          <div className="space-y-2 text-center">
+            <h3 className="text-2xl font-bold text-white font-heading tracking-wide">
+              <span className="text-metal-gradient">Get Your Invite</span>
+            </h3>
+            <p className="text-muted-foreground text-sm">
+              Enter your name and email to generate your exclusive AI-powered
+              invitation.
+            </p>
+
+            {/* IMPORTANT RULE: only one invitation per person */}
+            <p className="text-sm text-yellow-300 mt-1">
+              <strong>Note:</strong> Only one invitation per person is allowed.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Input
+                type="text"
+                placeholder="Enter your full name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (error) setError("");
+                  if (info) setInfo(null);
+                }}
+                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
+                disabled={disabled}
+              />
+
+              <Input
+                type="email"
+                placeholder="Enter your VIT email Id"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) setError("");
+                  if (info) setInfo(null);
+                }}
+                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
+                disabled={disabled}
+              />
+
+              {error && (
+                <div className="flex items-center gap-2 text-sm text-red-400">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{error}</span>
                 </div>
-            </Card>
-        </motion.div>
-    );
+              )}
+
+              {info && <div className="text-sm text-yellow-300">{info}</div>}
+            </div>
+
+            <Button
+              type="submit"
+              disabled={disabled}
+              className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/10 transition-all hover:scale-[1.02]"
+            >
+              {localLoading || isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  Generate My Invitation
+                  <Send className="ml-2 h-5 w-5" />
+                </>
+              )}
+            </Button>
+          </form>
+        </div>
+      </Card>
+    </motion.div>
+  );
 }

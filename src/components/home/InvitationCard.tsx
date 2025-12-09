@@ -18,7 +18,7 @@ export function InvitationCard({ name }: InvitationCardProps) {
             className="relative w-full max-w-md mx-auto"
         >
             {/* Glow Effects */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-yellow-500 to-yellow-700 opacity-50 blur-xl animate-pulse" />
+            <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-yellow-500 to-yellow-700 opacity-50 blur-xl animate-pulse" />
 
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl p-8 text-center shadow-2xl">
                 {/* Animated Orbs Background */}
@@ -50,7 +50,7 @@ export function InvitationCard({ name }: InvitationCardProps) {
 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center gap-6">
-                    <div className="rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 shadow-lg shadow-yellow-500/20">
+                    <div className="rounded-full bg-linear-to-br from-yellow-500 to-yellow-600 p-4 shadow-lg shadow-yellow-500/20">
                         <Ticket className="h-8 w-8 text-black" />
                     </div>
 
