@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email } = body ?? {};
-    console.log(name,email)
+
     if (!email || !name) {
       return NextResponse.json(
         { error: "Missing name or email" },
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     const client = await clientPromise;
-    const db = client.db(); // default DB from connection string
+    const db = client.db("awsclublaunch"); // default DB from connection string
     const coll = db.collection("invitations");
 
     // find case-insensitive
