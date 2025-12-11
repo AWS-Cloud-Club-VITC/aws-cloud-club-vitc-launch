@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,12 +21,35 @@ export function InvitationGenerator({
   const [localLoading, setLocalLoading] = useState(false);
   const [error, setError] = useState("");
   const [info, setInfo] = useState<string | null>(null);
+  const [isClosed, setIsClosed] = useState(false);
+
+  useEffect(() => {
+    const checkLimit = async () => {
+      try {
+        const res = await fetch("/api/invite", { method: "GET" });
+        const data = await res.json();
+        if (res.ok && data?.status === "closed") {
+          setIsClosed(true);
+          setError("Launch pass limit reached. Registrations are closed.");
+        }
+      } catch (err) {
+        console.error("Failed to check launch pass limit", err);
+      }
+    };
+
+    void checkLimit();
+  }, []);
 
   const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setInfo(null);
+
+    if (isClosed) {
+      setError("Launch pass limit reached. Registrations are closed.");
+      return;
+    }
 
     // name validations
     if (!name.trim()) {
@@ -90,7 +113,37 @@ export function InvitationGenerator({
     }
   };
 
-  const disabled = isLoading || localLoading;
+  const disabled = isLoading || localLoading || isClosed;
+
+  if (isClosed) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md mx-auto"
+      >
+        <Card className="bg-metal-glossy p-6 sm:p-8 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-linear-to-tr from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+          <div className="space-y-6 relative z-10 text-center">
+            <h3 className="text-2xl font-bold text-white font-heading tracking-wide">
+              <span className="text-metal-gradient">Get Your Invite</span>
+            </h3>
+            <div className="space-y-2">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-red-400 drop-shadow-lg">
+                Launch passes are now closed
+              </div>
+              <p className="text-base sm:text-lg text-white/80">
+                We hit the max limit of invites. Thank you for the amazing
+                response!
+              </p>
+            </div>
+          </div>
+        </Card>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
