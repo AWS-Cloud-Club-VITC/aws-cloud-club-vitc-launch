@@ -1,32 +1,33 @@
 "use client";
 
-import { Brain, Users, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MagnetLines from "@/components/ui/MagnetLines";
 import ScrollFloat from "@/components/ui/ScrollFloat";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { FolderKanban, CalendarDays, GraduationCap } from "lucide-react";
 
 const features = [
     {
-        title: "Groundbreaking Innovations",
-        icon: Brain,
-        description: "Discover the latest advancements in cloud computing and generative AI.",
-        image: "bg-gradient-to-br from-purple-900 to-blue-900", // Placeholder for image
+        title: "Projects",
+        icon: FolderKanban,
+        description: "Browse and build real-world cloud and AI projects.",
+        image: "bg-gradient-to-br from-purple-900 to-blue-900",
     },
     {
-        title: "Exclusive Networking",
-        icon: Users,
-        description: "Connect with industry leaders, fellow builders, and cloud enthusiasts.",
+        title: "Events",
+        icon: CalendarDays,
+        description: "Connect through workshops, meetups, and cloud community events.",
         image: "bg-gradient-to-br from-blue-900 to-cyan-900",
     },
     {
-        title: "Immersive Experience",
-        icon: Sparkles,
-        description: "Engage with interactive demos and hands-on workshops.",
+        title: "Get Certified Roadmap",
+        icon: GraduationCap,
+        description: "Roadmap will be uploaded soon.",
         image: "bg-gradient-to-br from-indigo-900 to-purple-900",
     },
 ];
+
 
 export function EventFeatures() {
     return (

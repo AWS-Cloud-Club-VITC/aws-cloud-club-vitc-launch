@@ -92,7 +92,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                 <div className="flex justify-between items-start">
                   <div className="h-20 w-20 rounded bg-transparent overflow-hidden shadow-lg shadow-yellow-500/">
                     <Image
-                      src="/aws_logo.webp"
+                      src="/aws_logo.png"
                       alt="AWS Cloud Clubs VIT Chennai"
                       width={40}
                       height={40}
@@ -187,6 +187,19 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
             Download Pass
           </Button>
         </div>
+
+        <p className="text-lg text-yellow-500/90 mt-2">
+          Mandatory –{" "}
+          <a
+            href="https://eventhubcc.vit.ac.in/EventHub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline text-yellow-500/80 hover:text-red-200"
+          >
+            Click & register for the event in EventHub
+          </a>
+        </p>
+
       </div>
     );
 }

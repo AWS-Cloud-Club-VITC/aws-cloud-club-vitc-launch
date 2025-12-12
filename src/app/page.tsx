@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SocialMedia } from "@/components/layout/SocialMedia";
 import { Hero } from "@/components/home/Hero";
 import { Countdown } from "@/components/home/Countdown";
 import { EventFeatures } from "@/components/home/EventFeatures";
@@ -12,6 +13,7 @@ export default function Home() {
         <Countdown />
         <Hero />
         <EventFeatures />
+        <SocialMedia />
       </main>
       <Footer />
     </div>
