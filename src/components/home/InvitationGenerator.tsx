@@ -131,7 +131,7 @@ export function InvitationGenerator({
               <span className="text-metal-gradient">Get Your Invite</span>
             </h3>
             <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-red-400 drop-shadow-lg">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-orange-400 via-yellow-300 to-red-400 drop-shadow-lg">
                 Launch passes are now closed
               </div>
               <p className="text-base sm:text-lg text-white/80">

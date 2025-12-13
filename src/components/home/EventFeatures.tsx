@@ -31,7 +31,7 @@ const features = [
 
 export function EventFeatures() {
     return (
-        <section className="py-20 relative overflow-hidden">
+        <section className="relative overflow-hidden">
             {/* Magnet Lines Background */}
             <div className="absolute inset-0 z-0 opacity-30">
                 <MagnetLines

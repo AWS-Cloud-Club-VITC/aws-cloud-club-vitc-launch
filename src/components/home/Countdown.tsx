@@ -49,8 +49,8 @@ export function Countdown() {
     return (
         <section className="py-8 md:py-10 relative z-20">
             <div className="container mx-auto px-4">
-                <div className="mb-8 text-center">
-                    <h2 className="text-2xl font-bold text-white/80 font-heading tracking-widest uppercase">The Countdown Has Begun</h2>
+                <div className="mb-16 text-center">
+                    
                 </div>
                 <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
                     <TimeUnit value={timeLeft.days} label="Days" />

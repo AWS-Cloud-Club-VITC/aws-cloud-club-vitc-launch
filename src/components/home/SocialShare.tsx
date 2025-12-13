@@ -24,7 +24,8 @@ export function SocialShare() {
     };
 
     return (
-        <div className="mt-8 flex flex-col items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+      <div className="mt-8 flex flex-col items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+        {/*
             <p className="text-sm text-muted-foreground">Share your invitation:</p>
             <div className="flex gap-3">
                 <Button
@@ -55,6 +56,7 @@ export function SocialShare() {
                     <span className="sr-only">Copy Link</span>
                 </Button>
             </div>
-        </div>
+            */}
+      </div>
     );
 }

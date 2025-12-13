@@ -20,7 +20,7 @@ export function Hero() {
     };
 
     return (
-        <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pb-10 overflow-hidden">
+        <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pb-48 overflow-hidden">
             {/* Background Effects */}
             <Starfield starCount={200} speed={0.2} />
             <div className="absolute inset-0 bg-grid-pattern opacity-10" />

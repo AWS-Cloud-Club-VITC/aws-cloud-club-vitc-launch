@@ -188,7 +188,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
           </Button>
         </div>
 
-        <p className="text-lg text-yellow-500/90 mt-2">
+        <p className="text-xs sm:text-lg text-yellow-500/90 mt-2">
           Mandatory –{" "}
           <a
             href="https://eventhubcc.vit.ac.in/EventHub/"

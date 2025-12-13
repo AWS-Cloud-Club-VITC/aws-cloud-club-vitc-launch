@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
-const MAX_LAUNCH_PASSES = 100;
+const MAX_LAUNCH_PASSES = 150;
 
 export async function GET() {
   try {

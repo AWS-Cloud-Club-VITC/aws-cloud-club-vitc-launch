@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Terminal, Award, BookOpen, TrendingUp, Loader2 } from "lucide-react";
@@ -55,7 +55,7 @@ export function EventReveal() {
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
                 <div className="space-y-2">
                     <h2 className="text-2xl font-bold text-white font-heading">Generating Your Launch Pass...</h2>
-                    <p className="text-muted-foreground">The AI is crafting your unique cloud persona.</p>
+                    <p className="text-muted-foreground">We are crafting your unique cloud persona.</p>
                 </div>
             </div>
         );
