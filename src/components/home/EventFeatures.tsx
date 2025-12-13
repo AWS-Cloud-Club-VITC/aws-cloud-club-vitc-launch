@@ -8,24 +8,25 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { FolderKanban, CalendarDays, GraduationCap } from "lucide-react";
 
 const features = [
-    {
-        title: "Projects",
-        icon: FolderKanban,
-        description: "Browse and build real-world cloud and AI projects.",
-        image: "bg-gradient-to-br from-purple-900 to-blue-900",
-    },
-    {
-        title: "Events",
-        icon: CalendarDays,
-        description: "Connect through workshops, meetups, and cloud community events.",
-        image: "bg-gradient-to-br from-blue-900 to-cyan-900",
-    },
-    {
-        title: "Get Certified Roadmap",
-        icon: GraduationCap,
-        description: "Roadmap will be uploaded soon.",
-        image: "bg-gradient-to-br from-indigo-900 to-purple-900",
-    },
+  {
+    title: "Projects",
+    icon: FolderKanban,
+    description: "Browse and build real-world cloud and AI projects",
+    image: "bg-gradient-to-br from-purple-900 to-blue-900",
+  },
+  {
+    title: "Events",
+    icon: CalendarDays,
+    description:
+      "Connect through workshops, meetups, and cloud community events",
+    image: "bg-gradient-to-br from-blue-900 to-cyan-900",
+  },
+  {
+    title: "Get Certified Roadmap",
+    icon: GraduationCap,
+    description: "Start your AWS certification journey with AWS Cloud Club",
+    image: "bg-gradient-to-br from-indigo-900 to-purple-900",
+  },
 ];
 
 

@@ -188,18 +188,23 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
           </Button>
         </div>
 
-        <p className="text-xs sm:text-lg text-yellow-500/90 mt-2">
+        <p className="text-xs sm:text-lg mt-2">
           Mandatory –{" "}
           <a
             href="https://eventhubcc.vit.ac.in/EventHub/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-yellow-500/80 hover:text-red-200"
+            className="
+              underline
+              bg-linear-to-r
+              from-yellow-200 via-yellow-400 to-yellow-600
+              bg-clip-text text-transparent
+              hover:from-red-300 hover:via-red-400 hover:to-red-600
+            "
           >
             Click & register for the event in EventHub
           </a>
         </p>
-
       </div>
     );
 }

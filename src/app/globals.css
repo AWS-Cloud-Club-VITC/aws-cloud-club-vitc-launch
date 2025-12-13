@@ -163,11 +163,11 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-700;
+    @apply bg-clip-text text-transparent bg-linear-to-r from-yellow-200 via-yellow-500 to-yellow-700;
   }
 
   .text-metal-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-200 to-gray-400;
+    @apply bg-clip-text text-transparent bg-linear-to-b from-white via-gray-200 to-gray-400;
   }
 
   .bg-metal {

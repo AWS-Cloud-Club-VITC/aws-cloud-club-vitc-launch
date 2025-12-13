@@ -15,10 +15,10 @@ export function EventReveal() {
     const [persona, setPersona] = useState<{ title: string; description: string; message: string } | null>(null);
 
     const perks = [
-        { icon: Terminal, title: "Hands-on AWS demos", desc: "Build with the latest tools." },
-        { icon: Award, title: "Builder badges & swags", desc: "Earn recognition for your skills." },
-        { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts." },
-        { icon: TrendingUp, title: "Career pathways", desc: "Connect with leadership & internships." },
+        { icon: Terminal, title: "Hands-on AWS demos", desc: "Build with the latest tools" },
+        { icon: Award, title: "Builder badges & swags", desc: "Earn recognition for your skills" },
+        { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts" },
+        { icon: TrendingUp, title: "Career pathways", desc: "Connect with leadership & internships" },
     ];
 
     const handleCompleteMission = async () => {
