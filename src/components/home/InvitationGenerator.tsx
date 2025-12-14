@@ -167,7 +167,7 @@ export function InvitationGenerator({
             </p>
 
             {/* IMPORTANT RULE: only one invitation per person */}
-            <p className="text-sm text-yellow-300 mt-1">
+            <p className="text-xs sm:text-sm text-yellow-300 mt-5">
               <strong>Note:</strong> Only one invitation per person is allowed.
             </p>
           </div>
@@ -183,7 +183,7 @@ export function InvitationGenerator({
                   if (error) setError("");
                   if (info) setInfo(null);
                 }}
-                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
+                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-sm sm:text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
                 disabled={disabled}
               />
 
@@ -196,7 +196,7 @@ export function InvitationGenerator({
                   if (error) setError("");
                   if (info) setInfo(null);
                 }}
-                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
+                className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-sm sm:text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
                 disabled={disabled}
               />
 
@@ -213,7 +213,7 @@ export function InvitationGenerator({
             <Button
               type="submit"
               disabled={disabled}
-              className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/10 transition-all hover:scale-[1.02]"
+              className="w-full h-12 text-md sm:text-lg font-medium shadow-lg shadow-yellow-500/10 transition-all hover:scale-[1.02]"
             >
               {localLoading || isLoading ? (
                 <>

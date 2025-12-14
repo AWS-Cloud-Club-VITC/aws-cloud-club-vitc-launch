@@ -29,16 +29,16 @@ export function Hero() {
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           {/* Left Side: Text */}
           <div className="text-center lg:text-left space-y-6">
-            <h1 className="text-5xl sm:text-7xl font-bold font-heading tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-7xl font-bold font-heading tracking-tight leading-tight">
               AWS CLOUD CLUB <br />
               <span className="text-gradient">VIT-C</span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-md sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Step into the next phase of cloud innovation. Join a distinguished
               community of builders and innovators shaping the future of
               technology.
             </p>
-            <p className="text-4xl sm:text-5xl font-heading font-bold tracking-wide text-left ml-1 lg:ml-4 text-gradient">
+            <p className="text-4xl sm:text-5xl text-center sm:text-left font-heading font-bold tracking-wide ml-1 lg:ml-4 text-gradient">
               RECRUITMENTS WILL BE OPENED SOON
             </p>
           </div>

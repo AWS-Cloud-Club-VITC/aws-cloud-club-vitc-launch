@@ -18,7 +18,8 @@ export function Header() {
           </div>
           <div className="flex flex-col leading-tight">
             <span className="text-xs sm:text-lg font-bold tracking-tight text-white">
-              AWS CLOUD CLUB <span className="text-primary">VIT-C</span>
+              AWS CLOUD CLUB{" "}
+              <span className="block sm:inline text-primary">VIT-C</span>
             </span>
           </div>
         </Link>

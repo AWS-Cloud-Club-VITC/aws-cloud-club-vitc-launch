@@ -63,7 +63,7 @@ export function EventFeatures() {
                             enableBlur={true}
                             baseRotation={2}
                             blurStrength={4}
-                            textClassName="text-muted-foreground text-lg"
+                            textClassName="text-muted-foreground text-md sm:text-lg"
                         >
                             Experience a tech event like no other, designed to inspire and empower the next generation of cloud builders.
                         </ScrollReveal>
