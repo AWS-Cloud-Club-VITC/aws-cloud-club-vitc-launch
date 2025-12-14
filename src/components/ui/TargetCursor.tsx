@@ -14,7 +14,7 @@ interface TargetCursorProps {
 
 const TargetCursor = ({
     targetSelector = 'button, a, input, .cursor-target',
-    spinDuration = 2,
+    spinDuration = 4,
     hideDefaultCursor = true,
     hoverDuration = 0.2,
     parallaxOn = true

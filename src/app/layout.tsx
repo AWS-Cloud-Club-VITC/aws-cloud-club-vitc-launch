@@ -1,27 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import localFont from "next/font/local";
+import { Exo_2, Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import { ReactiveBackground } from "@/components/layout/ReactiveBackground";
 import TargetCursor from "@/components/ui/TargetCursor";
 
-const inter = Inter({
+const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-chakra-petch",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const exo2 = Exo_2({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-exo2",
 });
 
-// Juana font family
-const juana = localFont({
-  src: "./fonts/Juana-Regular.otf",
-  variable: "--font-juana",
-  display: "swap",
-  fallback: ["serif"],
-});
 
 export const metadata: Metadata = {
   title: "AWS Cloud Club VIT-C",
@@ -36,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${juana.variable} antialiased bg-background text-foreground font-sans`}
+        className={`${chakraPetch.variable} ${exo2.variable} antialiased bg-background text-foreground font-sans`}
       >
         <TargetCursor />
         <ReactiveBackground />
