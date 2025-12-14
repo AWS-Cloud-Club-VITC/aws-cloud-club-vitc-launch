@@ -15,8 +15,8 @@ export function EventReveal() {
     const [persona, setPersona] = useState<{ title: string; description: string; message: string } | null>(null);
 
     const perks = [
-        { icon: Terminal, title: "Hands-on AWS demos", desc: "Build with the latest tools" },
-        { icon: Award, title: "Builder badges & swags", desc: "Earn recognition for your skills" },
+        { icon: Terminal, title: "Expert Network", desc: "Learn directly from AWS Solutions Architects, DevOps engineers, and cloud consultants who mentor our club." },
+        { icon: Award, title: "Real AWS Infrastructure", desc: "Work with production-grade AWS services, not classroom simulations. Deploy real applications that handle real traffic" },
         { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts" },
         { icon: TrendingUp, title: "Career pathways", desc: "Connect with leadership & internships" },
     ];
@@ -78,13 +78,13 @@ export function EventReveal() {
                     animate={{ opacity: 1, y: 0 }}
                     className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
                 >
-                    Access Granted
+                    Interest Confirmed
                 </motion.div>
                 <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
-                    Your Mission, <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">{name}</span>
+                    Your Journey, <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">{name}</span>
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                    Welcome to the inner circle. Here is what awaits you.
+                    You've taken the first step. Here's what AWS Cloud Club VIT-C offers our members
                 </p>
             </div>
 
@@ -114,7 +114,7 @@ export function EventReveal() {
                     size="lg"
                     className="bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-purple-500/25 transition-all hover:scale-105"
                 >
-                    Complete Your Mission
+                    Join The Waitlist
                 </Button>
             </div>
         </div>

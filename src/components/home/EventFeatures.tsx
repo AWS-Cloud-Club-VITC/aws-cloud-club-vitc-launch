@@ -11,20 +11,20 @@ const features = [
   {
     title: "Projects",
     icon: FolderKanban,
-    description: "Browse and build real-world cloud and AI projects",
+    description: "Build production-ready applications using AWS services",
     image: "bg-gradient-to-br from-purple-900 to-blue-900",
   },
   {
     title: "Events",
     icon: CalendarDays,
     description:
-      "Connect through workshops, meetups, and cloud community events",
+      " Learn from industry experts and AWS professionals",
     image: "bg-gradient-to-br from-blue-900 to-cyan-900",
   },
   {
     title: "Get Certified Roadmap",
     icon: GraduationCap,
-    description: "Start your AWS certification journey with AWS Cloud Club",
+    description: "Fast-track your AWS certification with structured guidance",
     image: "bg-gradient-to-br from-indigo-900 to-purple-900",
   },
 ];
@@ -54,7 +54,7 @@ export function EventFeatures() {
                         stagger={0.03}
                         containerClassName="text-3xl font-bold text-white font-heading mb-4"
                     >
-                        Why You Can't Miss This
+                        What You'll Master in AWS
                     </ScrollFloat>
 
                     <div className="max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ export function EventFeatures() {
                             blurStrength={4}
                             textClassName="text-muted-foreground text-md sm:text-lg"
                         >
-                            Experience a tech event like no other, designed to inspire and empower the next generation of cloud builders.
+                            Master Cloud Technology Through The Three pillars
                         </ScrollReveal>
                     </div>
                 </div>

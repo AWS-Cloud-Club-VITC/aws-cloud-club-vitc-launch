@@ -25,7 +25,7 @@ export function Header() {
         </Link>
 
         <div className="rounded-full bg-white/5 px-4 py-1.5 text-xs sm:text-sm font-medium text-white border border-white/10 backdrop-blur-sm">
-          Jan 06, 2026
+          Jan 06ᵗʰ 2026
         </div>
       </div>
     </header>
