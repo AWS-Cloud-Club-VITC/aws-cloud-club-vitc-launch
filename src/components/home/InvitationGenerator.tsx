@@ -159,11 +159,10 @@ export function InvitationGenerator({
         <div className="space-y-6 relative z-10">
           <div className="space-y-2 text-center">
             <h3 className="text-2xl font-bold text-white font-heading tracking-wide">
-              <span className="text-metal-gradient">Get Your Invite</span>
+              <span className="text-metal-gradient">Get early access to recruitment</span>
             </h3>
             <p className="text-muted-foreground text-sm">
-              Enter your name and email to generate your exclusive AI-powered
-              invitation.
+              Enter your name and VIT email to generate your exclusive invitation.
             </p>
 
             {/* IMPORTANT RULE: only one invitation per person */}
