@@ -7,14 +7,15 @@ export function Header() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-3">
           <div className="relative">
-            <Image
-              src="/aws_logo.png"
-              alt="AWS Cloud Clubs VIT Chennai"
-              width={56}
-              height={56}
-              className="h-20 w-20 rounded-lg object-cover shadow-lg"
-              priority
-            />
+        <Image
+  src="/aws_logo.png"
+  alt="AWS Cloud Clubs VIT Chennai"
+  width={80}
+  height={80}
+  className="rounded-lg object-contain shadow-lg"
+  quality={100}
+  priority
+/>
           </div>
           <div className="flex flex-col leading-tight">
             <span className="text-xs sm:text-lg font-bold tracking-tight text-white">

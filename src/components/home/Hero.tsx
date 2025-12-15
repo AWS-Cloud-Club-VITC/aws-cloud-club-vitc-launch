@@ -33,13 +33,14 @@ export function Hero() {
               AWS CLOUD CLUB<br />
               <span className="text-gradient">VIT-C LAUNCH</span>
             </h1>
+          
 <p className="text-md sm:text-xl text-muted-foreground max-w-xl lg:mx-0 leading-relaxed">
   While others learn theory, you'll build real cloud solutions
   <br />
   <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span>{" "}
    – where students become cloud architects
-</p>           
-            <p className="text-4xl sm:text-5xl text-center sm:text-left font-heading font-bold tracking-wide ml-1 lg:ml-4 text-gradient">
+</p>           <br></br>
+            <p className="text-4xl sm:text-5xl text-center sm:text-left font-heading font-bold tracking-wide ml-1 lg:ml-0 text-gradient">
               RECRUITMENTS WILL BE OPENED SOON !!
             </p>
           </div>

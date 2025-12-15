@@ -16,9 +16,9 @@ export function EventReveal() {
 
     const perks = [
         { icon: Terminal, title: "Expert Network", desc: "Learn directly from AWS Solutions Architects, DevOps engineers, and cloud consultants who mentor our club." },
-        { icon: Award, title: "Real AWS Infrastructure", desc: "Work with production-grade AWS services, not classroom simulations. Deploy real applications that handle real traffic" },
-        { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts" },
         { icon: TrendingUp, title: "Career pathways", desc: "Connect with leadership & internships" },
+        { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts" },
+        { icon: Award, title: "Real AWS Infrastructure", desc: "Work with production-grade AWS services, not classroom simulations. Deploy real applications that handle real traffic" },
     ];
 
     const handleCompleteMission = async () => {
@@ -42,7 +42,33 @@ export function EventReveal() {
                 title: "The System Visionary",
                 description: "You see the big picture. Where others see chaos, you see patterns and potential for optimization.",
                 message: "Scale your dreams."
+            },
+            {
+                title: "The Digital Alchemist",
+                description: "A creator who turns raw logic into living systems. Where others see code, you see transformation and intent.",
+                message: "Your ideas don’t just run — they evolve."
+            },
+            {
+                title: "The Silent Engineer",
+                description: "You work behind the scenes, designing systems so seamless they feel invisible. Precision is your signature.",
+                message: "The strongest foundations are rarely seen."
+            },
+            {
+                title: "The Cloud Cartographer",
+                description: "You map complexity into clarity, navigating distributed systems like uncharted terrain waiting to be explored.",
+                message: "Every great journey needs a guide."
+            },
+            {
+                title: "The System Weaver",
+                description: "You interlace services, data, and logic into architectures that feel almost alive. Balance is your superpower.",
+                message: "Everything connects — you make it work."
+            },
+            {
+                title: "The Future Forger",
+                description: "You don’t wait for what’s next — you build it. Innovation is your default, not your goal.",
+                message: "Tomorrow starts with what you write today."
             }
+
         ];
 
         setPersona(personas[name.length % personas.length]);
@@ -64,7 +90,7 @@ export function EventReveal() {
     if (step === "pass" && persona) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] animate-in fade-in duration-500">
-                <h2 className="text-3xl font-bold text-white font-heading mb-8 text-center">Mission Accepted</h2>
+                <h2 className="text-3xl font-bold text-white font-heading mb-8 text-center"></h2>
                 <LaunchPass name={name} persona={persona} />
             </div>
         );
@@ -81,7 +107,8 @@ export function EventReveal() {
                     Interest Confirmed
                 </motion.div>
                 <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
-                    Your Journey, <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">{name}</span>
+                    Your Journey, <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 via-amber-500 to-orange-600">
+{name}</span>
                 </h1>
                 <p className="text-xl text-muted-foreground">
                     You've taken the first step. Here's what AWS Cloud Club VIT-C offers our members
@@ -107,13 +134,11 @@ export function EventReveal() {
                     </motion.div>
                 ))}
             </div>
-
             <div className="text-center">
                 <Button
                     onClick={handleCompleteMission}
                     size="lg"
-                    className="bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-purple-500/25 transition-all hover:scale-105"
-                >
+                   className="bg-linear-to-r from-yellow-600 via-amber-600 to-yellow-700 hover:from-yellow-700 hover:via-amber-700 hover:to-yellow-800 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-yellow-700/20 transition-all hover:scale-105">
                     Join The Waitlist
                 </Button>
             </div>

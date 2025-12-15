@@ -162,7 +162,7 @@ export function InvitationGenerator({
               <span className="text-metal-gradient">Get early access to recruitment</span>
             </h3>
             <p className="text-muted-foreground text-sm">
-              Enter your name and VIT email to generate your exclusive AI-powered invitation.
+              Enter your name and VIT email to generate your exclusive invitation.
             </p>
 
             {/* IMPORTANT RULE: only one invitation per person */}

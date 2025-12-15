@@ -18,7 +18,7 @@ const features = [
     title: "Events",
     icon: CalendarDays,
     description:
-      " Learn from industry experts and AWS professionals",
+      " Learn from AWS professionals → Network with industry leaders",
     image: "bg-gradient-to-br from-blue-900 to-cyan-900",
   },
   {
@@ -65,7 +65,7 @@ export function EventFeatures() {
                             blurStrength={4}
                             textClassName="text-muted-foreground text-md sm:text-lg"
                         >
-                            Master Cloud Technology Through The Three pillars
+                            Master Cloud Technology Through The Three Pillars
                         </ScrollReveal>
                     </div>
                 </div>
