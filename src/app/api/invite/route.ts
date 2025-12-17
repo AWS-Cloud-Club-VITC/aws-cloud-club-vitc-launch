@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
-const MAX_LAUNCH_PASSES = 150;
+const MAX_LAUNCH_PASSES = 10000;
 
 export async function GET() {
   try {
@@ -40,11 +40,11 @@ export async function POST(req: NextRequest) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
-    
+
     const client = await clientPromise;
     const db = client.db("awsclublaunch"); // default DB from connection string
     const coll = db.collection("invitations");
-    
+
     // find case-insensitive
     const existing = await coll.findOne({
       email: { $regex: `^${email}$`, $options: "i" },
@@ -52,7 +52,11 @@ export async function POST(req: NextRequest) {
 
     if (existing) {
       return NextResponse.json(
-        { status: "exists", message: "Email already registered" },
+        {
+          status: "exists",
+          message: "Email already registered",
+          name: existing.name
+        },
         { status: 200 }
       );
     }
@@ -73,7 +77,7 @@ export async function POST(req: NextRequest) {
       email,
       createdAt: new Date(),
     };
-    
+
     const result = await coll.insertOne(doc);
 
     return NextResponse.json(

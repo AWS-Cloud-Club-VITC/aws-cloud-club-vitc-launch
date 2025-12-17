@@ -62,7 +62,29 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
 
 
     return (
+      
       <div className="flex flex-col items-center gap-8 py-10">
+                <div>
+        <b>
+        <h1 className="text-xs sm:text-lg mt-2">
+                    *Mandatory –{" "}
+          <a
+            href="https://eventhubcc.vit.ac.in/EventHub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              underline
+              bg-linear-to-r
+              from-yellow-200 via-yellow-400 to-yellow-600
+              bg-clip-text text-transparent
+              hover:from-white hover:via-grey-900 hover:to-blue-900
+            "
+          >
+            Click Here to register in the VITC EventHub Website 
+          </a>
+        </h1>
+        </b>
+        </div>
         <div className="perspective-1000 relative w-[320px] h-[480px] sm:w-[360px] sm:h-[540px] flex justify-center">
           <motion.div
             className="w-full h-full relative preserve-3d cursor-pointer transition-all duration-500 origin-center"
@@ -76,6 +98,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
             onClick={() => setIsFlipped(!isFlipped)}
             ref={cardRef}
           >
+            
             {/* Front Side */}
             <div
               className="absolute inset-0 w-full h-full backface-hidden rounded-2xl overflow-hidden bg-metal-glossy cursor-target"
@@ -188,23 +211,6 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
           </Button>
         </div>
 
-        <p className="text-xs sm:text-lg mt-2">
-          Mandatory –{" "}
-          <a
-            href="https://eventhubcc.vit.ac.in/EventHub/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              underline
-              bg-linear-to-r
-              from-yellow-200 via-yellow-400 to-yellow-600
-              bg-clip-text text-transparent
-              hover:from-red-300 hover:via-red-400 hover:to-red-600
-            "
-          >
-            Click & register for the event in EventHub
-          </a>
-        </p>
       </div>
     );
 }

@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Terminal, Award, BookOpen, TrendingUp, Loader2 } from "lucide-react";
+import { Award, BookOpen, TrendingUp, Loader2, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LaunchPass } from "./LaunchPass";
+
 
 export function EventReveal() {
     const searchParams = useSearchParams();
@@ -15,7 +16,7 @@ export function EventReveal() {
     const [persona, setPersona] = useState<{ title: string; description: string; message: string } | null>(null);
 
     const perks = [
-        { icon: Terminal, title: "Expert Network", desc: "Learn directly from AWS Solutions Architects, DevOps engineers, and cloud consultants who mentor our club." },
+        { icon: Globe, title: "Expert Network", desc: "Learn directly from AWS Solutions Architects, DevOps engineers, and cloud consultants who mentor our club." },
         { icon: TrendingUp, title: "Career pathways", desc: "Connect with leadership & internships" },
         { icon: BookOpen, title: "Student-led learning", desc: "Learn from peers and experts" },
         { icon: Award, title: "Real AWS Infrastructure", desc: "Work with production-grade AWS services, not classroom simulations. Deploy real applications that handle real traffic" },
@@ -108,7 +109,7 @@ export function EventReveal() {
                 </motion.div>
                 <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
                     Your Journey, <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 via-amber-500 to-orange-600">
-{name}</span>
+                        {name}</span>
                 </h1>
                 <p className="text-xl text-muted-foreground">
                     You've taken the first step. Here's what AWS Cloud Club VIT-C offers our members
@@ -138,10 +139,11 @@ export function EventReveal() {
                 <Button
                     onClick={handleCompleteMission}
                     size="lg"
-                   className="bg-linear-to-r from-yellow-600 via-amber-600 to-yellow-700 hover:from-yellow-700 hover:via-amber-700 hover:to-yellow-800 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-yellow-700/20 transition-all hover:scale-105">
+                    className="bg-linear-to-r from-yellow-600 via-amber-600 to-yellow-700 hover:from-yellow-700 hover:via-amber-700 hover:to-yellow-800 text-white border-0 h-14 px-8 text-xl font-medium shadow-lg shadow-yellow-700/20 transition-all hover:scale-105">
                     Join The Waitlist
                 </Button>
             </div>
+            <p className="text-muted-foreground text-center mt-4">Secure One of the Few Spots </p>
         </div>
     );
 }
