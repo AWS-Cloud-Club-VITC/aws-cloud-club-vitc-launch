@@ -3,9 +3,19 @@
 import { Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import React from "react";
+
+interface SocialLink {
+    name: string;
+    icon: React.ElementType | null;
+    url: string;
+    color: string;
+    isSvg: boolean;
+    svgPath?: string;
+}
 
 export function SocialMedia() {
-    const socialLinks = [
+    const socialLinks: SocialLink[] = [
         // {
         //     name: "Instagram",
         //     icon: Instagram,
