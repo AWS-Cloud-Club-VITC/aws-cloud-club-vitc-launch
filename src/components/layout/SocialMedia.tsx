@@ -6,20 +6,20 @@ import Image from "next/image";
 
 export function SocialMedia() {
     const socialLinks = [
-        {
-            name: "Instagram",
-            icon: Instagram,
-            url: "https://www.instagram.com/awsvitc/",
-            color: "hover:text-pink-500",
-            isSvg: false,
-        },
-        {
-            name: "LinkedIn",
-            icon: Linkedin,
-            url: "https://www.linkedin.com/in/aws-vitc/",
-            color: "hover:text-blue-400",
-            isSvg: false,
-        },
+        // {
+        //     name: "Instagram",
+        //     icon: Instagram,
+        //     url: "https://www.instagram.com/awsvitc/",
+        //     color: "hover:text-pink-500",
+        //     isSvg: false,
+        // },
+        // {
+        //     name: "LinkedIn",
+        //     icon: Linkedin,
+        //     url: "https://www.linkedin.com/in/aws-vitc/",
+        //     color: "hover:text-blue-400",
+        //     isSvg: false,
+        // },
         {
             name: "Meetup",
             icon: null,

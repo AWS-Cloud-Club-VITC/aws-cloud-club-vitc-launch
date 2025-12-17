@@ -8,7 +8,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { FolderKanban, CalendarDays, GraduationCap } from "lucide-react";
 
 const features = [
-  {
+ {
     title: "Projects",
     icon: FolderKanban,
     description: "Build production-ready applications using AWS services",
@@ -28,7 +28,6 @@ const features = [
     image: "bg-gradient-to-br from-indigo-900 to-purple-900",
   },
 ];
-
 
 export function EventFeatures() {
     return (

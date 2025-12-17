@@ -27,11 +27,11 @@ export function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          {/* Left Side: Text */}
+          
           <div className="text-center lg:text-left space-y-6">
             <h1 className="text-4xl sm:text-7xl font-bold font-heading tracking-tight leading-tight">
-              AWS CLOUD CLUB<br />
-              <span className="text-gradient">VIT-C LAUNCH</span>
+               AWS CLOUD CLUB<br />
+              <span className="text-gradient">VIT-C's LAUNCH</span>
             </h1>
           
 <p className="text-md sm:text-xl text-muted-foreground max-w-xl lg:mx-0 leading-relaxed">

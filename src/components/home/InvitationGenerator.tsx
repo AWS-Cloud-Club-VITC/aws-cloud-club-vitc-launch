@@ -65,7 +65,7 @@ export function InvitationGenerator({
     // must end with .vitstudent.ac.in
     const validateEmail = (e: string) =>
       /^[a-zA-Z0-9._%+-]+@vitstudent\.ac\.in$/.test(e);
-    
+
     if (!validateEmail(email.trim())) {
       setError("Enter VIT email id");
       return;
@@ -95,7 +95,9 @@ export function InvitationGenerator({
         // DO NOT proceed to next page — show message and stay on same page.
         setInfo("This email is already registered.");
         setLocalLoading(true);
-        onGenerate(name.trim());
+        // Use the name returned from backend if available, otherwise fallback to input name
+        const registeredName = data.name || name.trim();
+        onGenerate(registeredName);
         return; // IMPORTANT: stop here, do not call onGenerate
       } else if (data.status === "created") {
         setInfo("You are registered! Continuing...");
