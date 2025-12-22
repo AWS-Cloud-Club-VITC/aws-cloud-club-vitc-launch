@@ -22,6 +22,7 @@ export function InvitationGenerator({
   const [error, setError] = useState("");
   const [info, setInfo] = useState<string | null>(null);
   const [isClosed, setIsClosed] = useState(false);
+  const [hasTriggeredEgg, setHasTriggeredEgg] = useState(false);
 
   useEffect(() => {
     const checkLimit = async () => {
@@ -180,9 +181,20 @@ export function InvitationGenerator({
                 placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value);
+                  const newName = e.target.value;
+                  setName(newName);
                   if (error) setError("");
                   if (info) setInfo(null);
+
+                  // Mobile keyboards may not emit global keydown events reliably.
+                  // Trigger the AWS easter egg when the name contains "aws".
+                  if (
+                    !hasTriggeredEgg &&
+                    newName.toLowerCase().includes("aws")
+                  ) {
+                    setHasTriggeredEgg(true);
+                    window.dispatchEvent(new Event("aws-easter-egg"));
+                  }
                 }}
                 className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-sm sm:text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
                 disabled={disabled}

@@ -37,21 +37,31 @@ export function EasterEgg() {
           border: "rgba(255, 215, 0, 0.4)",
         };
 
+  const triggerEasterEgg = () => {
+    setIsActive(true);
+    setStage("centering");
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.key.toLowerCase();
       setKeys((prev) => {
         const newKeys = [...prev, key].slice(-3);
         if (newKeys.join("") === "aws") {
-          setIsActive(true);
-          setStage("centering");
+          triggerEasterEgg();
         }
         return newKeys;
       });
     };
 
+    const handleCustomTrigger = () => triggerEasterEgg();
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("aws-easter-egg", handleCustomTrigger);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("aws-easter-egg", handleCustomTrigger);
+    };
   }, []);
 
   // Region Cycling
