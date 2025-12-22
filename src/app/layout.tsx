@@ -3,6 +3,8 @@ import { Exo_2, Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import { ReactiveBackground } from "@/components/layout/ReactiveBackground";
 import TargetCursor from "@/components/ui/TargetCursor";
+import { EasterEgg } from "@/components/EasterEgg";
+
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -33,6 +35,7 @@ export default function RootLayout({
         className={`${chakraPetch.variable} ${exo2.variable} antialiased bg-background text-foreground font-sans`}
       >
         <TargetCursor />
+        <EasterEgg />
         <ReactiveBackground />
         {children}
       </body>
