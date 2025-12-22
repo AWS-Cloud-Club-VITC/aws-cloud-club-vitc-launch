@@ -22,7 +22,6 @@ export function InvitationGenerator({
   const [error, setError] = useState("");
   const [info, setInfo] = useState<string | null>(null);
   const [isClosed, setIsClosed] = useState(false);
-  const [hasTriggeredEgg, setHasTriggeredEgg] = useState(false);
 
   useEffect(() => {
     const checkLimit = async () => {
@@ -187,12 +186,8 @@ export function InvitationGenerator({
                   if (info) setInfo(null);
 
                   // Mobile keyboards may not emit global keydown events reliably.
-                  // Trigger the AWS easter egg when the name contains "aws".
-                  if (
-                    !hasTriggeredEgg &&
-                    newName.toLowerCase().includes("aws")
-                  ) {
-                    setHasTriggeredEgg(true);
+                  // Trigger the AWS easter egg whenever the name contains "aws".
+                  if (newName.toLowerCase().includes("aws")) {
                     window.dispatchEvent(new Event("aws-easter-egg"));
                   }
                 }}

@@ -305,7 +305,7 @@ export function EasterEgg() {
 
                 {(stage === "provisioning" || stage === "overload") && (
                   <div
-                    className="text-lg md:text-xl w-full text-left tracking-wide leading-relaxed"
+                    className="text-base md:text-lg w-full text-left tracking-wide leading-relaxed"
                     style={{
                       color: theme.text,
                       textShadow: `0 0 10px ${
