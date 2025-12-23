@@ -39,12 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# markdown files
-COUNTDOWN_TEXT_UPDATE.md
-EASTER_EGG_TEST.md
-JOBS_LEVEL_MOBILE.md
-MOBILE_ENHANCEMENTS.md
-MOBILE_OPTIMIZATION.md
-README.md
-TESTING_GUIDE.md
