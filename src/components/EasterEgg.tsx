@@ -20,6 +20,15 @@ export function EasterEgg() {
   const [typedText, setTypedText] = useState<string[]>([]);
   const [region, setRegion] = useState("SEARCHING...");
   const [metrics, setMetrics] = useState({ cpu: 12, ram: 24, net: 400 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Theme configuration
   const theme =
@@ -40,6 +49,11 @@ export function EasterEgg() {
   const triggerEasterEgg = () => {
     setIsActive(true);
     setStage("centering");
+    
+    // Haptic feedback (vibration) on mobile
+    if (navigator.vibrate) {
+      navigator.vibrate(50); // Quick pulse
+    }
   };
 
   useEffect(() => {
@@ -165,6 +179,12 @@ export function EasterEgg() {
         "ERROR: 0xDEADBEEF",
         "SYSTEM OVERLOAD IMMINENT!!!",
       ]);
+      
+      // Vibration pattern matching the shake
+      if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100, 50, 100]); // Shake pattern
+      }
+      
       setTimeout(() => setStage("shattered"), 1500);
     } else if (stage === "shattered") {
       setTimeout(() => {
@@ -178,9 +198,13 @@ export function EasterEgg() {
   const cornerSize = 20;
   const borderWidth = 4;
 
+  const handleSkip = () => {
+    window.location.href = "/recruitment";
+  };
+
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-99999 bg-black/90 backdrop-blur-md flex items-center justify-center cursor-none">
+      <div className={`fixed inset-0 z-99999 bg-black/90 ${isMobile ? 'backdrop-blur-sm' : 'backdrop-blur-md'} flex items-center justify-center cursor-none`}>
         {/* WINDOWED STAGES */}
         {stage !== "hidden" && stage !== "shattered" && (
           <motion.div
@@ -210,7 +234,7 @@ export function EasterEgg() {
                     rotate: 360,
                     x: [0, -10, 10, -10, 10, -5, 5, 0],
                     y: [0, -5, 5, -10, 10, -5, 5, 0],
-                    transition: { duration: 0.2, repeat: Infinity },
+                    transition: { duration: 0.2, repeat: 3 },
                   }
                 : {
                     width: "min(800px, 90vw)",
@@ -228,6 +252,10 @@ export function EasterEgg() {
                   ? "0 0 100px rgba(255, 0, 0, 0.4)"
                   : undefined,
               borderColor: theme.border,
+              backfaceVisibility: "hidden",
+              WebkitFontSmoothing: "antialiased",
+              transformStyle: "preserve-3d",
+              willChange: "transform, opacity",
               backgroundImage: `repeating-linear-gradient(
                                 0deg,
                                 transparent,
@@ -305,7 +333,7 @@ export function EasterEgg() {
 
                 {(stage === "provisioning" || stage === "overload") && (
                   <div
-                    className="text-base md:text-lg w-full text-left tracking-wide leading-relaxed"
+                    className="text-sm sm:text-base md:text-lg w-full text-left tracking-wide leading-relaxed"
                     style={{
                       color: theme.text,
                       textShadow: `0 0 10px ${
@@ -353,17 +381,21 @@ export function EasterEgg() {
                 )}
               </div>
 
-              {/* Sidebar Metrics HUD - FULLY RESTORED */}
+              {/* Sidebar Metrics HUD - RESPONSIVE */}
               {stage !== "centering" && stage !== "rotating" && (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
-                  className={`w-48 border-l p-4 flex flex-col gap-6 transition-colors duration-300 ${
-                    stage === "overload"
-                      ? "border-red-500/50 bg-red-900/10"
-                      : "border-[#FFD700]/20 bg-[#FFD700]/5"
-                  }`}
+                  className={`
+                    ${isMobile ? "hidden" : "w-48 border-l"}
+                    p-4 flex flex-col gap-6 transition-colors duration-300 
+                    ${
+                      stage === "overload"
+                        ? "border-red-500/50 bg-red-900/10"
+                        : "border-[#FFD700]/20 bg-[#FFD700]/5"
+                    }
+                  `}
                 >
                   {/* CPU */}
                   <div className="space-y-2">
@@ -510,12 +542,12 @@ export function EasterEgg() {
               {/* Left Half */}
               <motion.div
                 initial={{ x: 0, opacity: 1, rotate: 0 }}
-                animate={{ x: -600, opacity: 0, rotate: -15 }}
+                animate={{ x: isMobile ? -400 : -600, opacity: 0, rotate: -15 }}
                 transition={{ duration: 1.2, ease: "circOut" }}
                 className="overflow-hidden relative"
                 style={{
-                  width: "min(400px, 45vw)",
-                  height: "min(500px, 60vh)",
+                  width: isMobile ? "min(300px, 45vw)" : "min(400px, 45vw)",
+                  height: isMobile ? "min(400px, 60vh)" : "min(500px, 60vh)",
                 }}
               >
                 {/* Inner Window (Left Aligned) */}
@@ -561,12 +593,12 @@ export function EasterEgg() {
               {/* Right Half */}
               <motion.div
                 initial={{ x: 0, opacity: 1, rotate: 0 }}
-                animate={{ x: 600, opacity: 0, rotate: 15 }}
+                animate={{ x: isMobile ? 400 : 600, opacity: 0, rotate: 15 }}
                 transition={{ duration: 1.2, ease: "circOut" }}
                 className="overflow-hidden relative"
                 style={{
-                  width: "min(400px, 45vw)",
-                  height: "min(500px, 60vh)",
+                  width: isMobile ? "min(300px, 45vw)" : "min(400px, 45vw)",
+                  height: isMobile ? "min(400px, 60vh)" : "min(500px, 60vh)",
                 }}
               >
                 {/* Inner Window (Right Aligned via transform or margin) */}
@@ -624,34 +656,64 @@ export function EasterEgg() {
               transition={{ duration: 0.15 }}
             />
 
-            {/* The Smile Reveal */}
+            {/* The Smile Reveal - Official Amazon SVG */}
             <motion.div
-              className="relative w-[400px] h-[200px] flex items-center justify-center filter drop-shadow-[0_0_50px_rgba(255,215,0,0.8)] z-40"
+              className={`relative ${
+                isMobile ? "w-[280px] h-[140px]" : "w-[400px] h-[200px]"
+              } flex items-center justify-center filter drop-shadow-[0_0_50px_rgba(255,215,0,0.8)] z-40`}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.25, type: "spring" }}
             >
-              <svg viewBox="0 0 100 50" className="w-full h-full">
-                <motion.path
-                  d="M 15 15 Q 50 45 85 15"
-                  stroke="#FF9900"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  fill="none"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                />
-                <motion.path
-                  d="M 88 21 L 94 9 L 80 11 L 86 14 Z"
+              <svg
+                viewBox={isMobile ? "80 260 400 190" : "70 250 420 210"}
+                className="w-full h-full"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  id="amazon-arrow-aligned"
+                  transform={isMobile ? "matrix(1.15, 0, 0, 1, -54, 0)" : "matrix(1.15, 0, 0, 1, -64, 0)"}
                   fill="#FF9900"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, duration: 0.2, ease: "backOut" }}
-                />
+                  fillRule="nonzero"
+                >
+                  {/* THE OFFICIAL AMAZON SMILE */}
+                  <motion.path
+                    d="M138.5,338.6c33.8,25.6,70.8,49.4,120.4,49.5c0.9,0,1.9,0,2.8,0c31.5-0.7,67.4-10.1,95.2-25.4l0.2-0.1 c3.7-2,7.3-4.1,10.7-6.5c2.1-1.4,3.7-3.6,3.7-6c-0.1-4.1-3.9-6.9-8.1-6.9c-1.4,0-2.7,0.3-3.9,0.8c-1.5,0.6-2.9,1.1-4.3,1.6l-2,0.7 l-2.6,0.9h0c-28.6,10.2-58.5,16.3-86.3,16.7c-1,0-2.1,0-3,0c-43.6,0-79.1-17.8-115.1-35.4c-1.3-0.6-2.5-0.9-3.7-0.9 c-1.7,0-3.2,0.6-4.5,1.6c-1.2,1-2,2.5-1.9,4C135.7,335.6,136.8,337.4,138.5,338.6z"
+                    initial={{ clipPath: "inset(0 100% 0 0)" }}
+                    animate={{ clipPath: "inset(0 0% 0 0)" }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                  />
+
+                  {/* THE OFFICIAL AMAZON ARROWHEAD */}
+                  <g transform={isMobile ? "translate(8, 5)" : "translate(15, 2)"}>
+                    <motion.path
+                      d="M337.2,332.6c1.3,0.9,2.7,1.2,4,1.2c0.3,0,0.6,0,0.8-0.1h0.2h0.2c2.5-0.4,6.1-0.7,10.4-1.3c3.6-0.4,7.6-0.6,10.9-0.6 c2.4,0,4.6,0.1,6,0.5c0.7,0.1,1.3,0.3,1.6,0.5c0.1,0,0.2,0.1,0.2,0.1c0.1,0.2,0.1,0.6,0.1,1.3c0,2.5-1.1,7.1-2.8,11.7 c-1.6,4.5-3.5,9.1-4.8,12.2c-0.3,0.7-0.5,1.5-0.5,2.3c0,1.2,0.5,2.7,1.7,3.7c1.1,1,2.7,1.4,4,1.4h0.1c1.9,0,3.5-0.7,4.9-1.7 c13-10.4,17.5-27.2,17.7-36.6v-1.5h0c-0.1-2.5-0.7-4.4-1.9-5.9l-0.1-0.2l-0.1-0.2c-1.1-1.1-2.3-1.6-3.5-2c-3.6-1.2-8.9-1.9-15.3-1.9 c-4.6,0-9.7,0.4-14.8,1.4v-0.3l-5.1,1.5h-0.1l-2.9,0.8v0.1c-3.4,1.3-6.4,2.8-9.4,4.6c-1.8,1.2-3.2,2.8-3.3,5.2 C335.2,330.1,335.9,331.7,337.2,332.6z"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.8, duration: 0.2, ease: "backOut" }}
+                      style={{ transformOrigin: "center" }}
+                    />
+                  </g>
+                </g>
               </svg>
             </motion.div>
           </div>
+        )}
+
+        {/* Skip Button - appears after 2 seconds */}
+        {stage !== "hidden" && stage !== "shattered" && (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            transition={{ delay: 2, duration: 0.5 }}
+            whileHover={{ opacity: 1, scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleSkip}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-100 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/70 text-sm font-medium hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
+          >
+            Tap to skip →
+          </motion.button>
         )}
       </div>
     </AnimatePresence>

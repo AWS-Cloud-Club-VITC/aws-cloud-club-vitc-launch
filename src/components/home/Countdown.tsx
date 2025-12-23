@@ -33,7 +33,7 @@ export function Countdown() {
     }, []);
 
     const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-        <div className="flex flex-col items-center justify-center rounded-xl bg-metal-glossy p-4 backdrop-blur-md w-24 h-20 sm:w-32 sm:h-32 border border-white/10 shadow-[0_0_30px_-10px_rgba(255,215,0,0.1)] relative group overflow-hidden hover:scale-105 transition-transform duration-300">
+        <div className="flex flex-col items-center justify-center rounded-xl bg-metal-glossy p-4 backdrop-blur-md w-32 h-24 sm:w-32 sm:h-32 border border-white/10 shadow-[0_0_30px_-10px_rgba(255,215,0,0.1)] relative group overflow-hidden hover:scale-105 transition-transform duration-300">
             <div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent opacity-50" />
             <div className="absolute inset-0 bg-linear-to-tr from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -52,7 +52,8 @@ export function Countdown() {
                 <div className="mb-16 text-center">
                     
                 </div>
-                <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+                {/* Mobile: 2×2 grid, Desktop: 4 in a row */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 justify-items-center gap-4 sm:gap-8 max-w-3xl mx-auto">
                     <TimeUnit value={timeLeft.days} label="Days" />
                     <TimeUnit value={timeLeft.hours} label="Hours" />
                     <TimeUnit value={timeLeft.minutes} label="Minutes" />

@@ -27,6 +27,10 @@ export default function Starfield({
         let animationFrameId: number;
         let stars: { x: number; y: number; z: number; size: number }[] = [];
 
+        // Detect mobile and reduce stars for performance
+        const isMobile = window.innerWidth < 768;
+        const effectiveStarCount = isMobile ? Math.min(starCount, 50) : starCount;
+
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -35,10 +39,25 @@ export default function Starfield({
 
         const initStars = () => {
             stars = [];
-            for (let i = 0; i < starCount; i++) {
+            for (let i = 0; i < effectiveStarCount; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                
+                // Mobile only: reduce center column density by 60%
+                if (isMobile) {
+                    const centerStart = canvas.width * 0.25; // Center 50% of screen
+                    const centerEnd = canvas.width * 0.75;
+                    const isInCenter = x >= centerStart && x <= centerEnd;
+                    
+                    // Skip 60% of center stars
+                    if (isInCenter && Math.random() < 0.6) {
+                        continue;
+                    }
+                }
+                
                 stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
+                    x,
+                    y,
                     z: Math.random() * 2, // Depth factor
                     size: Math.random() * 1.5,
                 });

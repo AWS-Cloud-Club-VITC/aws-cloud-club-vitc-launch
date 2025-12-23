@@ -28,19 +28,21 @@ export function Hero() {
 
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           
-          <div className="text-center lg:text-left space-y-6">
-            <h1 className="text-4xl sm:text-7xl font-bold font-heading tracking-tight leading-tight">
+          <div className="text-center lg:text-left space-y-6 lg:space-y-6">
+            {/* Mobile: line-height rhythm, Desktop: unchanged */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-tight [margin-bottom:0.6lh] lg:mb-0">
                AWS CLOUD CLUB<br />
               <span className="text-gradient">VIT-C's LAUNCH</span>
             </h1>
           
-<p className="text-md sm:text-xl text-muted-foreground max-w-xl lg:mx-0 leading-relaxed">
+<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
   While others learn theory, you'll build real cloud solutions
-  <br />
-  <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span>{" "}
-   – where students become cloud architects
-</p>           <br></br>
-            <p className="text-4xl sm:text-5xl text-center sm:text-left font-heading font-bold tracking-wide ml-1 lg:ml-0 text-gradient">
+</p>
+<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
+  <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
+</p>
+            <br></br>
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0">
               RECRUITMENTS WILL BE OPENED SOON !!
             </p>
           </div>

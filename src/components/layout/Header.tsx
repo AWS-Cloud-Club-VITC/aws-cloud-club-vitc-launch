@@ -16,6 +16,31 @@ export function Header() {
     seconds: 0,
   });
 
+  // Triple-tap detection for Easter egg
+  const [tapCount, setTapCount] = useState(0);
+  const [tapTimer, setTapTimer] = useState<NodeJS.Timeout | null>(null);
+
+  const handleLogoTap = () => {
+    setTapCount((prev) => prev + 1);
+
+    // Clear existing timer
+    if (tapTimer) clearTimeout(tapTimer);
+
+    // Set new timer
+    const timer = setTimeout(() => {
+      setTapCount(0);
+    }, 500); // Reset after 500ms
+    setTapTimer(timer);
+
+    // Check if we have 3 taps
+    if (tapCount + 1 >= 3) {
+      setTapCount(0);
+      if (tapTimer) clearTimeout(tapTimer);
+      // Trigger Easter egg
+      window.dispatchEvent(new CustomEvent("aws-easter-egg"));
+    }
+  };
+
   useEffect(() => {
     if (!showCountdown) return;
 
@@ -47,7 +72,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-md">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative">
+          <div className="relative" onClick={handleLogoTap}>
             <Image
               src="/aws_logo.png"
               alt="AWS Cloud Clubs VIT Chennai"

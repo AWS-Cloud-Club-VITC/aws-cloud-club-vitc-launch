@@ -133,16 +133,22 @@
       radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.05) 0%, transparent 60%),
       linear-gradient(to bottom, #000000, #020202);
     background-attachment: fixed;
-    cursor: none;
   }
 
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  [role="button"] {
-    cursor: none !important;
+  /* Custom cursor only on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: none;
+    }
+
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"] {
+      cursor: none !important;
+    }
   }
 
   /* Disable decorative ligatures and alternate characters for Juana font */
