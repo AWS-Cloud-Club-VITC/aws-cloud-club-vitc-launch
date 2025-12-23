@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { InvitationGenerator } from "./InvitationGenerator";
 import { InvitationCard } from "./InvitationCard";
 import { SocialShare } from "./SocialShare";
+import { Button } from "@/components/ui/button";
 
 import Starfield from "@/components/ui/Starfield";
 
@@ -45,6 +49,21 @@ export function Hero() {
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0">
               RECRUITMENTS WILL BE OPENED SOON !!
             </p>
+            {invitationName && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex justify-center lg:justify-start [margin-top:2lh] lg:mt-6"
+              >
+                <Link href="/recruitment">
+                  <Button variant="secondary" size="lg" className="group">
+                    <span className="text-lg font-bold">APPLY NOW</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </motion.div>
+            )}
           </div>
 
           {/* Right Side: Interactive Module */}

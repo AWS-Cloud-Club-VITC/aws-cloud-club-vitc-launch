@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function RecruitmentPage() {
   return (
@@ -51,12 +52,15 @@ export default function RecruitmentPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 2 }}
         >
-          <Link
-            href="https://forms.gle/xyz" // Placeholder link
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#FF9900]/10 border border-[#FF9900]/50 rounded-full text-[#FF9900] hover:bg-[#FF9900] hover:text-black transition-all duration-300"
-          >
-            <span className="text-lg font-bold tracking-wider">APPLY NOW</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <Link href="/recruitment/apply">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="group px-8 py-4 text-lg font-bold"
+            >
+              <span>APPLY NOW</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </Link>
         </motion.div>
       </motion.div>
