@@ -9,20 +9,20 @@ export async function POST(req: NextRequest) {
     const {
       name,
       regno,
+      phoneNumber,
       vitEmail,
       preference1,
       preference2,
       personalQuestions,
-      githubRepo,
       linkedinProfile,
       whyJoin,
       submittedAt,
     } = body ?? {};
 
     // Validation
-    if (!name || !regno || !vitEmail) {
+    if (!name || !regno || !phoneNumber || !vitEmail) {
       return NextResponse.json(
-        { error: "Missing required fields: name, regno, or vitEmail" },
+        { error: "Missing required fields: name, regno, phoneNumber, or vitEmail" },
         { status: 400 }
       );
     }
@@ -45,15 +45,45 @@ export async function POST(req: NextRequest) {
 
     // Validate preference structure
     const validatePreference = (pref: any, prefNum: string) => {
-      if (!pref.dept || !pref.projects) {
-        return `${prefNum}: Department and projects are required`;
+      if (!pref.dept) {
+        return `${prefNum}: Department is required`;
       }
-      if (
-        !pref.technicalQuestions?.q1 ||
-        !pref.technicalQuestions?.q2
-      ) {
-        return `${prefNum}: All technical questions are required`;
+      
+      const dept = pref.dept;
+      const isTech = [
+        "AI & Machine Learning",
+        "Web Development",
+        "Network & Security",
+        "Competitive Programming",
+        "UI/UX"
+      ].includes(dept);
+
+      // Common questions validation
+      if (!pref.technicalQuestions?.q1 || !pref.technicalQuestions?.q2) {
+         return `${prefNum}: All questions are required`;
       }
+
+      // Department specific validation
+      if (dept === "AI & Machine Learning" || dept === "Web Development") {
+        if (!pref.projects?.trim()) return `${prefNum}: Project description is required`;
+        if (!pref.projectLink?.trim()) return `${prefNum}: Project URL is required`;
+        if (!pref.githubProfile?.trim()) return `${prefNum}: GitHub Profile is required`;
+      }
+      else if (dept === "Network & Security") {
+        if (!pref.projects?.trim()) return `${prefNum}: Project description is required`;
+        if (!pref.projectLink?.trim()) return `${prefNum}: Project link is required`;
+      }
+      else if (dept === "Competitive Programming") {
+        if (!pref.projectLink?.trim()) return `${prefNum}: GitHub repository is required`;
+        if (!pref.projects?.trim()) return `${prefNum}: CP profile links are required`;
+      }
+      else if (dept === "UI/UX") {
+         if (!pref.projects?.trim()) return `${prefNum}: Portfolio links (Drive/Figma) are required`;
+      }
+       else if (dept === "Designing") { // Non-technical
+         if (!pref.projectLink?.trim()) return `${prefNum}: Portfolio link (Drive) is required`;
+      }
+      
       return null;
     };
 
@@ -86,9 +116,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!githubRepo || !linkedinProfile || !whyJoin) {
+    if (!linkedinProfile || !whyJoin) {
       return NextResponse.json(
-        { error: "GitHub repo, LinkedIn profile, and whyJoin are required" },
+        { error: "LinkedIn profile and whyJoin are required" },
         { status: 400 }
       );
     }
@@ -113,10 +143,13 @@ export async function POST(req: NextRequest) {
     const recruitmentData: RecruitmentFormData = {
       name: name.trim(),
       regno: normalizedRegno,
+      phoneNumber: phoneNumber.trim(),
       vitEmail: normalizedEmail,
       preference1: {
         dept: preference1.dept,
-        projects: preference1.projects.trim(),
+        projects: preference1.projects?.trim(),
+        projectLink: preference1.projectLink?.trim(),
+        githubProfile: preference1.githubProfile?.trim(),
         technicalQuestions: {
           q1: preference1.technicalQuestions.q1.trim(),
           q2: preference1.technicalQuestions.q2.trim(),
@@ -124,7 +157,9 @@ export async function POST(req: NextRequest) {
       },
       preference2: {
         dept: preference2.dept,
-        projects: preference2.projects.trim(),
+        projects: preference2.projects?.trim(),
+        projectLink: preference2.projectLink?.trim(),
+        githubProfile: preference2.githubProfile?.trim(),
         technicalQuestions: {
           q1: preference2.technicalQuestions.q1.trim(),
           q2: preference2.technicalQuestions.q2.trim(),
@@ -134,7 +169,6 @@ export async function POST(req: NextRequest) {
         q1: personalQuestions.q1.trim(),
         q2: personalQuestions.q2.trim(),
       },
-      githubRepo: githubRepo.trim(),
       linkedinProfile: linkedinProfile.trim(),
       whyJoin: whyJoin.trim(),
       submittedAt: submittedAt ? new Date(submittedAt) : new Date(),
