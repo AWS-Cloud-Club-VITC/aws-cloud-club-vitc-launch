@@ -123,13 +123,13 @@ export function EventReveal() {
                             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 group-hover:border-yellow-500/50 transition-colors duration-500">
                                 <img
                                     src="Speaker2.jpeg"
-                                    alt="Sakthivel C"
+                                    alt="Mr. Sakthivel C"
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                             </div>
                         </div>
 
-                        <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-yellow-400 transition-colors">Sakthivel C</h3>
+                        <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-yellow-400 transition-colors">Mr. Sakthivel C</h3>
                         <p className="text-yellow-500/90 font-medium text-lg mb-4">Cloud Solution Architect </p>
                         <p className="text-yellow-500/90 font-medium text-lg mb-4">17+ years of experience working on strategic initiatives and leading enterprise-scale digital transformation across AWS</p>
 
@@ -162,8 +162,8 @@ export function EventReveal() {
                             </div>
                         </div>
 
-                        <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-orange-400 transition-colors">Sridevi Murugayen</h3>
-                        <p className="text-orange-500/90 font-medium text-lg mb-4">Specialized in AWS & Big Data and Analytics</p>
+                        <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-orange-400 transition-colors">Mrs. Sridevi Murugayen</h3>
+                        <p className="text-orange-500/90 font-medium text-lg mb-4">AWS Data Hero</p>
                         <span className="text-orange-500/90 font-medium text-lg mb-4">
                             AWS Certified Solution Architect Professional,
                             5+ years of experience designing and implementing solutions for Big Data </span>
