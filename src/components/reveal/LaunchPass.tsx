@@ -68,20 +68,17 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
         <b>
         <h1 className="text-xs sm:text-lg mt-2">
                     *Mandatory –{" "}
-          <a
-            href="https://eventhubcc.vit.ac.in/EventHub/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <p
             className="
               underline
               bg-linear-to-r
               from-yellow-200 via-yellow-400 to-yellow-600
               bg-clip-text text-transparent
-              hover:from-white hover:via-grey-900 hover:to-blue-900
+              hover:from-white hover:via-grey-90
             "
           >
-            Click Here to register in the VITC EventHub Website 
-          </a>
+            This pass is required to enter into the Event hall
+          </p>
         </h1>
         </b>
         </div>
