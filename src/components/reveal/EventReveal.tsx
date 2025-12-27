@@ -125,7 +125,7 @@ export function EventReveal() {
                             <div className="absolute inset-0 bg-yellow-500/20 rounded-full blur-2xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 group-hover:border-yellow-500/50 transition-colors duration-500">
                                 <img
-                                    src="https://media.licdn.com/dms/image/v2/C5603AQHZg2qK7bO4-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1658902580537?e=1740614400&v=beta&t=H3-wLKyhPzN_CgkD4K2Ki0TvXkPGeDqgw5uJp6qN0uk"
+                                    src="Speaker2.jpeg"
                                     alt="Sakthivel C"
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
