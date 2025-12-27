@@ -33,10 +33,21 @@ export default function ScrollFloat({
 
     const splitText = useMemo(() => {
         const text = typeof children === "string" ? children : "";
-        return text.split("").map((char, index) => (
-            <span className="inline-block" key={index}>
-                {char === " " ? "\u00A0" : char}
-            </span>
+        return text.split(" ").map((word, i, arr) => (
+            <React.Fragment key={i}>
+                <span className="inline-block whitespace-nowrap">
+                    {word.split("").map((char, j) => (
+                        <span className="inline-block scroll-float-char" key={j}>
+                            {char}
+                        </span>
+                    ))}
+                </span>
+                {i < arr.length - 1 && (
+                     <span className="inline-block scroll-float-char">
+                        &nbsp;
+                    </span>
+                )}
+            </React.Fragment>
         ));
     }, [children]);
 
@@ -49,7 +60,7 @@ export default function ScrollFloat({
                 ? scrollContainerRef.current
                 : window;
 
-        const charElements = el.querySelectorAll(".inline-block");
+        const charElements = el.querySelectorAll(".scroll-float-char");
 
         gsap.fromTo(
             charElements,

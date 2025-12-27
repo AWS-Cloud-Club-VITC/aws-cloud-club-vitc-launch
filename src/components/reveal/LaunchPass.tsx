@@ -67,8 +67,8 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                 <div>
         <b>
         <h1 className="text-xs sm:text-lg mt-2">
-                    *Mandatory –{" "}
-          <p
+                    Note –{" "}
+          <span
             className="
               underline
               bg-linear-to-r
@@ -78,7 +78,7 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
             "
           >
             This pass is required to enter into the Event hall
-          </p>
+          </span>
         </h1>
         </b>
         </div>
