@@ -56,12 +56,6 @@ export function Hero() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex justify-center lg:justify-start [margin-top:2lh] lg:mt-6"
               >
-                <Link href="/recruitment">
-                  <Button variant="secondary" size="lg" className="group">
-                    <span className="text-lg font-bold">APPLY NOW</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
               </motion.div>
             )}
           </div>

@@ -47,6 +47,10 @@ export function EasterEgg() {
         };
 
   const triggerEasterEgg = () => {
+    // Easter Egg unlocks only after Dec 30th 2025, 6 PM IST
+    const unlockDate = new Date("2026-01-06T11:00:00+05:30");
+    if (new Date() < unlockDate) return;
+
     setIsActive(true);
     setStage("centering");
     

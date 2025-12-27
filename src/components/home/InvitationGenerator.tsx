@@ -186,8 +186,8 @@ export function InvitationGenerator({
                   if (info) setInfo(null);
 
                   // Mobile keyboards may not emit global keydown events reliably.
-                  // Trigger the AWS easter egg whenever the name contains "aws".
-                  if (newName.toLowerCase().includes("aws")) {
+                  // Trigger the AWS easter egg whenever the name is exactly "aws".
+                  if (newName.toLowerCase() === "aws") {
                     window.dispatchEvent(new Event("aws-easter-egg"));
                   }
                 }}

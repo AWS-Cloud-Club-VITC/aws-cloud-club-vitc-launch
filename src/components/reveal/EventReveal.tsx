@@ -105,9 +105,6 @@ export function EventReveal() {
                     Distinguished <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 via-amber-500 to-orange-600">
                         Speakers</span>
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Note: V.O.C Auditorium is located near the main entrance (arch).
-                </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 px-4">
