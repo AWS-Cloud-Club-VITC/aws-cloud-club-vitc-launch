@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Award, BookOpen, TrendingUp, Loader2, Globe, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,15 @@ import { LaunchPass } from "./LaunchPass";
 
 
 export function EventReveal() {
-    const searchParams = useSearchParams();
-    const name = searchParams.get("name") || "Builder";
+    const [name, setName] = useState("Builder");
+
+    // Load name from localStorage on mount
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedName = localStorage.getItem('launch_pass_name');
+            if (storedName) setName(storedName);
+        }
+    }, []);
 
     const [step, setStep] = useState<"mission" | "generating" | "pass">("mission");
     const [persona, setPersona] = useState<{ title: string; description: string; message: string } | null>(null);

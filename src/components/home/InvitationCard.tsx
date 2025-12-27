@@ -2,14 +2,18 @@
 
 import { motion } from "framer-motion";
 import { Ticket, ArrowRight } from "lucide-react";
-import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
+
+import { useRouter } from "next/navigation";
 
 interface InvitationCardProps {
     name: string;
 }
 
 export function InvitationCard({ name }: InvitationCardProps) {
+    const router = useRouter();
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -62,10 +66,14 @@ export function InvitationCard({ name }: InvitationCardProps) {
                     </div>
 
                     <div className="w-full pt-4">
-                        <Button asChild className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/20">
-                            <Link href={`/reveal?name=${encodeURIComponent(name)}`}>
-                                See What Awaits <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
+                        <Button 
+                            className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/20"
+                            onClick={() => {
+                                localStorage.setItem('launch_pass_name', name);
+                                router.push('/reveal');
+                            }}
+                        >
+                            See What Awaits <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </div>
                 </div>
