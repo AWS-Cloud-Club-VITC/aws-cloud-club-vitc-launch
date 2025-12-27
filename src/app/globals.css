@@ -135,21 +135,7 @@
     background-attachment: fixed;
   }
 
-  /* Custom cursor only on non-touch devices */
-  @media (hover: hover) and (pointer: fine) {
-    body {
-      cursor: none;
-    }
 
-    a,
-    button,
-    input,
-    textarea,
-    select,
-    [role="button"] {
-      cursor: none !important;
-    }
-  }
 
   /* Disable decorative ligatures and alternate characters for Juana font */
   .font-heading,

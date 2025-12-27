@@ -101,42 +101,43 @@ export function EventReveal() {
         <div className="max-w-4xl mx-auto space-y-12">
             {/* Speakers Section */}
             <div className="text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                 <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
+                <h1 className="text-4xl sm:text-5xl font-bold text-white font-heading">
                     Distinguished <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 via-amber-500 to-orange-600">
                         Speakers</span>
-                 </h1>
-                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                </h1>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                     Note: V.O.C Auditorium is located near the main entrance (arch).
-                 </p>
+                </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 px-4">
                 {/* Speaker 1 */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.6 }}
                     className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 p-1 hover:border-yellow-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
+
                     <div className="relative h-full bg-black/40 backdrop-blur-sm rounded-[20px] p-6 flex flex-col items-center text-center">
                         <div className="w-48 h-48 mb-6 relative">
                             <div className="absolute inset-0 bg-yellow-500/20 rounded-full blur-2xl group-hover:bg-yellow-500/30 transition-all duration-500" />
                             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 group-hover:border-yellow-500/50 transition-colors duration-500">
-                                <img 
-                                    src="https://media.licdn.com/dms/image/v2/C5603AQHZg2qK7bO4-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1658902580537?e=1740614400&v=beta&t=H3-wLKyhPzN_CgkD4K2Ki0TvXkPGeDqgw5uJp6qN0uk" 
+                                <img
+                                    src="https://media.licdn.com/dms/image/v2/C5603AQHZg2qK7bO4-w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1658902580537?e=1740614400&v=beta&t=H3-wLKyhPzN_CgkD4K2Ki0TvXkPGeDqgw5uJp6qN0uk"
                                     alt="Sakthivel C"
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                             </div>
                         </div>
-                        
+
                         <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-yellow-400 transition-colors">Sakthivel C</h3>
-                        <p className="text-yellow-500/90 font-medium text-lg mb-4">Cloud Solution Architect, AWS</p>
-                        
+                        <p className="text-yellow-500/90 font-medium text-lg mb-4">Cloud Solution Architect </p>
+                        <p className="text-yellow-500/90 font-medium text-lg mb-4">17+ years of experience working on strategic initiatives and leading enterprise-scale digital transformation across AWS</p>
+
                         <div className="mt-auto pt-4 border-t border-white/10 w-full flex justify-center">
-                            <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-[#0A66C2] text-white/60 transition-all duration-300">
+                            <a href="https://www.linkedin.com/in/srcsakthivel/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-[#0A66C2] text-white/60 transition-all duration-300">
                                 <Linkedin className="w-5 h-5" />
                             </a>
                         </div>
@@ -144,20 +145,20 @@ export function EventReveal() {
                 </motion.div>
 
                 {/* Speaker 2 */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                     className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 p-1 hover:border-orange-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(249,115,22,0.3)]"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
+
                     <div className="relative h-full bg-black/40 backdrop-blur-sm rounded-[20px] p-6 flex flex-col items-center text-center">
-                         <div className="w-48 h-48 mb-6 relative">
+                        <div className="w-48 h-48 mb-6 relative">
                             <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-2xl group-hover:bg-orange-500/30 transition-all duration-500" />
                             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors duration-500">
-                                <img 
-                                    src="https://media.licdn.com/dms/image/v2/D5603AQGzYfU8QvP4aw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718258327421?e=1740614400&v=beta&t=l_9lGkK-yJ8V2o-p-L2qA0O5q2V-y5p-L2qA0O5q2V" 
+                                <img
+                                    src="Speaker1.jpg"
                                     alt="Sridevi Murugayen"
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
@@ -165,10 +166,13 @@ export function EventReveal() {
                         </div>
 
                         <h3 className="text-3xl font-bold text-white font-heading mb-2 group-hover:text-orange-400 transition-colors">Sridevi Murugayen</h3>
-                        <p className="text-orange-500/90 font-medium text-lg mb-4">AWS Data Hero, Technophile</p>
-                        
-                         <div className="mt-auto pt-4 border-t border-white/10 w-full flex justify-center">
-                            <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-[#0A66C2] text-white/60 transition-all duration-300">
+                        <p className="text-orange-500/90 font-medium text-lg mb-4">Specialized in AWS & Big Data and Analytics</p>
+                        <span className="text-orange-500/90 font-medium text-lg mb-4">
+                            AWS Certified Solution Architect Professional,
+                            5+ years of experience designing and implementing solutions for Big Data </span>
+
+                        <div className="mt-auto pt-4 border-t border-white/10 w-full flex justify-center">
+                            <a href="https://www.linkedin.com/in/sridevi-murugayen/?profileId=ACoAAAcCVgoBIPEo5uhajHSZU1UCeMN2xmHQqUc" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 hover:text-[#0A66C2] text-white/60 transition-all duration-300">
                                 <Linkedin className="w-5 h-5" />
                             </a>
                         </div>
@@ -189,7 +193,7 @@ export function EventReveal() {
                     </Button>
                 </div>
             </div>
-            
+
             {/* 
             <div className="text-center mb-12 space-y-4">
                 <motion.div
