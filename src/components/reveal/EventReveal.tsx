@@ -113,7 +113,7 @@ export function EventReveal() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.6 }}
-                    className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 p-1 hover:border-yellow-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]"
+                    className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-white/5 to-white/[0.02] border border-white/10 p-1 hover:border-yellow-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(234,179,8,0.3)]"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
