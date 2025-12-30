@@ -67,18 +67,21 @@ export function LaunchPass({ name, persona }: LaunchPassProps) {
                 <div>
         <b>
         <h1 className="text-xs sm:text-lg mt-2">
-                    Note –{" "}
-          <span
+          <a
+            href="https://eventhubcc.vit.ac.in/EventHub/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               underline
               bg-linear-to-r
               from-yellow-200 via-yellow-400 to-yellow-600
               bg-clip-text text-transparent
               hover:from-white hover:via-grey-90
+              cursor-pointer
             "
           >
-            This pass is required to enter into the Event hall
-          </span>
+            Mandatory - Click to register in Event Hub
+          </a>
         </h1>
         </b>
         </div>
