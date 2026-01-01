@@ -10,28 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-const technicalDepts = [
-  "AI & Machine Learning",
-  "Web Development",
-  "Network & Security",
-  "Competitive Programming",
-  "UI/UX",
-];
-
-const nonTechnicalDepts = [
-  "Designing",
-  "Content Writing & Documentation",
-  "Social Media & Marketing",
-  "Event Management",
-  "Sponsorship & Outreach",
-];
-
-const departments = [...technicalDepts, ...nonTechnicalDepts];
-
-const technicalQuestions = [
-  "Why did you choose this department?",
-  "What experience do you have in this field?",
-];
+import { deptConfig, technicalDepts, nonTechnicalDepts } from "@/lib/config/departments";
 
 const personalQuestions = [
   "What motivates you to work in a team environment?",
@@ -49,20 +28,14 @@ export default function RecruitmentApplyPage() {
       projects: "",
       projectLink: "",
       githubProfile: "",
-      technicalQuestions: {
-        q1: "",
-        q2: "",
-      },
+      answers: {} as Record<string, string>,
     },
     preference2: {
       dept: "",
       projects: "",
       projectLink: "",
       githubProfile: "",
-      technicalQuestions: {
-        q1: "",
-        q2: "",
-      },
+      answers: {} as Record<string, string>,
     },
     personalQuestions: {
       q1: "",
@@ -90,30 +63,32 @@ export default function RecruitmentApplyPage() {
     // Helper for validation
     const validatePreferenceHelper = (pref: any, prefName: string) => {
         if (!pref.dept) return `${prefName}: Department is required`;
-        if (!pref.technicalQuestions.q1.trim()) return `${prefName}: "Why did you choose..." is required`;
-        if (!pref.technicalQuestions.q2.trim()) return `${prefName}: "What experience..." is required`;
-
-        const dept = pref.dept;
         
-        if (["AI & Machine Learning", "Web Development"].includes(dept)) {
-           if (!pref.projects.trim()) return `${prefName}: Project description is required`;
-           if (!pref.projectLink.trim()) return `${prefName}: Project URL is required`;
-           if (!pref.githubProfile.trim()) return `${prefName}: GitHub Profile is required`;
+        const config = deptConfig[pref.dept];
+        if (!config) return `${prefName}: Invalid department selected`;
+
+        // Check Questions
+        for (let i = 0; i < config.questions.length; i++) {
+            const answer = pref.answers[`q${i}`];
+            if (!answer || !answer.trim()) {
+                // Returns first missing question error
+                // Use a truncated version of the question for the error message
+                const qShort = config.questions[i].length > 30 ? config.questions[i].substring(0, 30) + "..." : config.questions[i];
+                return `${prefName}: Answer required for "${qShort}"`;
+            }
         }
-        else if (dept === "Network & Security") {
-            if (!pref.projects.trim()) return `${prefName}: Project description is required`;
-            if (!pref.projectLink.trim()) return `${prefName}: Project Link is required`;
+
+        // Check Projects
+        if (config.project?.required && !pref.projects.trim()) {
+            return `${prefName}: ${config.project.label} is required`;
         }
-        else if (dept === "Competitive Programming") {
-           if (!pref.projectLink.trim()) return `${prefName}: GitHub Repo link is required`;
-           if (!pref.projects.trim()) return `${prefName}: CP Profile links are required`;
+        if (config.projectLink?.required && !pref.projectLink.trim()) {
+            return `${prefName}: ${config.projectLink.label} is required`;
         }
-        else if (dept === "UI/UX") {
-            if (!pref.projects.trim()) return `${prefName}: Portfolio links are required`;
+        if (config.github?.required && !pref.githubProfile.trim()) {
+            return `${prefName}: GitHub Profile is required`;
         }
-        else if (dept === "Designing") {
-            if (!pref.projectLink.trim()) return `${prefName}: Portfolio link is required`;
-        }
+        
         return null;
     };
 
@@ -181,14 +156,14 @@ export default function RecruitmentApplyPage() {
           projects: "",
           projectLink: "",
           githubProfile: "",
-          technicalQuestions: { q1: "", q2: "" },
+          answers: {},
         },
         preference2: {
           dept: "",
           projects: "",
           projectLink: "",
           githubProfile: "",
-          technicalQuestions: { q1: "", q2: "" },
+          answers: {},
         },
         personalQuestions: { q1: "", q2: "" },
         linkedinProfile: "",
@@ -227,18 +202,18 @@ export default function RecruitmentApplyPage() {
     });
   };
 
-  const updateTechnicalQuestion = (
+  const updateAnswer = (
     pref: "preference1" | "preference2",
-    qNum: "q1" | "q2",
+    qIndex: number,
     value: string
   ) => {
     setFormData((prev) => ({
       ...prev,
       [pref]: {
         ...prev[pref],
-        technicalQuestions: {
-          ...prev[pref].technicalQuestions,
-          [qNum]: value,
+        answers: {
+          ...prev[pref].answers,
+          [`q${qIndex}`]: value,
         },
       },
     }));
@@ -295,80 +270,48 @@ export default function RecruitmentApplyPage() {
 
         {/* Dynamic Fields */}
         {(() => {
-          const dept = formData[pref].dept;
-          if (!dept) return null;
-
-          const isAiMlWeb = ["AI & Machine Learning", "Web Development"].includes(dept);
-          const isNetwork = dept === "Network & Security";
-          const isCP = dept === "Competitive Programming";
-          const isUiUx = dept === "UI/UX";
-          const isDesign = dept === "Designing";
-          
-          const showProjectText = isAiMlWeb || isNetwork || isCP || isUiUx;
-          const showProjectLink = isAiMlWeb || isNetwork || isCP || isDesign;
-          const showGithubProfile = isAiMlWeb; // Only for AI & ML and Web Development
-
-          // Determine Labels and Placeholders
-          let projectTextLabel = "Project Description";
-          let projectLinkLabel = "Project Link";
-          let projectTextPlaceholder = "Enter details...";
-          
-          if (isAiMlWeb) {
-             projectTextLabel = "Project";
-             projectLinkLabel = "Project URL (GitHub Repo/Deployed Link)";
-             projectTextPlaceholder = "Describe your best project. If you are a fresher and have no projects, enter NONE";
-          } else if (isNetwork) {
-             projectLinkLabel = "Project URL (GitHub/Deployed)";
-             projectTextPlaceholder = "Describe your networking or security related projects...";
-          } else if (isCP) {
-             projectLinkLabel = "GitHub Repository URL";
-             projectTextLabel = "CP Profile Links (LeetCode, HackerRank, etc.)";
-             projectTextPlaceholder = "Enter your profile links for LeetCode, HackerRank, CodeChef, etc.";
-          } else if (isUiUx) {
-             projectTextLabel = "Portfolio Links (Drive / Figma)";
-             projectTextPlaceholder = "Paste links to your portfolio (Figma, Behance, Drive, etc.)";
-          } else if (isDesign) {
-             projectLinkLabel = "Portfolio Link (Drive)";
-          }
+          const deptKey = formData[pref].dept;
+          const config = deptConfig[deptKey];
+          if (!config) return null;
 
           return (
             <>
-               {showProjectText && (
+               {config.project && (
                 <div className="space-y-2">
                   <Label htmlFor={`${pref}-projects`} className="text-white">
-                    {projectTextLabel} <span className="text-yellow-500">*</span>
+                    {config.project.label} <span className="text-yellow-500">*</span>
                   </Label>
                   <Textarea
                     id={`${pref}-projects`}
                     value={formData[pref].projects}
                     onChange={(e) => updatePreference(pref, "projects", e.target.value)}
-                    placeholder={projectTextPlaceholder}
+                    placeholder={config.project.placeholder}
                     className="min-h-[100px] text-white placeholder:text-muted-foreground"
                     required
                   />
                 </div>
                )}
 
-               {showProjectLink && (
+               {config.projectLink && (
                 <div className="space-y-2">
                   <Label htmlFor={`${pref}-projectLink`} className="text-white">
-                    {projectLinkLabel} <span className="text-yellow-500">*</span>
+                    {config.projectLink.label} {config.projectLink.required && <span className="text-yellow-500">*</span>}
                   </Label>
                   <Textarea
                     id={`${pref}-projectLink`}
                     value={formData[pref].projectLink || ""}
                     onChange={(e) => updatePreference(pref, "projectLink", e.target.value)}
-                    placeholder="https://..."
+                    placeholder={config.projectLink.placeholder}
                     className="min-h-[60px] text-white placeholder:text-muted-foreground"
-                    required
+                    required={config.projectLink.required}
                   />
                 </div>
                )}
 
-               {showGithubProfile && (
+               {config.github && (
                 <div className="space-y-2">
                   <Label htmlFor={`${pref}-githubProfile`} className="text-white">
-                    GitHub Profile <span className="text-yellow-500">*</span>
+                    GitHub Profile {config.github.required && <span className="text-yellow-500">*</span>}
                   </Label>
                   <Input
                     id={`${pref}-githubProfile`}
@@ -377,41 +320,31 @@ export default function RecruitmentApplyPage() {
                     onChange={(e) => updatePreference(pref, "githubProfile", e.target.value)}
                     placeholder="https://github.com/yourusername"
                     className="text-white placeholder:text-muted-foreground"
-                    required
+                    required={config.github.required}
                   />
                 </div>
                )}
+
+               {/* Dynamic Questions */}
+               <div className="space-y-4 mt-6">
+                 {config.questions.map((q, idx) => (
+                    <div key={idx} className="space-y-2">
+                        <Label className="text-white text-sm">
+                            {q} <span className="text-yellow-500">*</span>
+                        </Label>
+                        <Textarea
+                            value={formData[pref].answers[`q${idx}`] || ""}
+                            onChange={(e) => updateAnswer(pref, idx, e.target.value)}
+                            placeholder="Your answer..."
+                            className="min-h-[80px] text-white placeholder:text-muted-foreground"
+                            required
+                        />
+                    </div>
+                 ))}
+               </div>
             </>
           );
         })()}
-
-        {/* Technical Questions (Renamed to General/Specific Questions) */}
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label className="text-white text-sm">
-                Why did you choose this department? <span className="text-yellow-500">*</span>
-            </Label>
-            <Textarea
-              value={formData[pref].technicalQuestions.q1}
-              onChange={(e) => updateTechnicalQuestion(pref, "q1", e.target.value)}
-              placeholder="Your answer..."
-              className="min-h-[80px] text-white placeholder:text-muted-foreground"
-              required
-            />
-          </div>
-           <div className="space-y-2">
-            <Label className="text-white text-sm">
-                What experience do you have in this field? <span className="text-yellow-500">*</span>
-            </Label>
-            <Textarea
-              value={formData[pref].technicalQuestions.q2}
-              onChange={(e) => updateTechnicalQuestion(pref, "q2", e.target.value)}
-              placeholder="Your answer..."
-              className="min-h-[80px] text-white placeholder:text-muted-foreground"
-              required
-            />
-          </div>
-        </div>
       </CardContent>
     </Card>
   );
@@ -543,8 +476,8 @@ export default function RecruitmentApplyPage() {
             </CardContent>
           </Card>
 
-          {/* Preferences - Side by Side */}
-          <div className="grid lg:grid-cols-2 gap-6">
+          {/* Preferences - Stacked */}
+          <div className="grid grid-cols-1 gap-6">
             {renderPreferenceForm("preference1", "Preference 1")}
             {renderPreferenceForm("preference2", "Preference 2")}
           </div>

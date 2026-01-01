@@ -4,7 +4,9 @@ export interface Preference {
   projects?: string;
   projectLink?: string;
   githubProfile?: string;
-  technicalQuestions: {
+  answers: Record<string, string>;
+  // Deprecated but kept for type safety with old data if needed, though we primarily use answers now
+  technicalQuestions?: {
     q1: string;
     q2: string;
   };
