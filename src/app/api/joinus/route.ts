@@ -125,14 +125,6 @@ export async function POST(req: NextRequest) {
     const normalizedEmail = vitEmail.toLowerCase().trim();
     const normalizedRegno = regno.trim();
 
-    // Check if a document with the same email AND regno exists
-    const existing = await coll.findOne({
-      $and: [
-        { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
-        { regno: normalizedRegno },
-      ],
-    });
-
     // Prepare the document to insert
     const recruitmentData: RecruitmentFormData = {
       name: name.trim(),
@@ -141,16 +133,16 @@ export async function POST(req: NextRequest) {
       vitEmail: normalizedEmail,
       preference1: {
         dept: preference1.dept,
-        projects: preference1.projects?.trim(),
-        projectLink: preference1.projectLink?.trim(),
-        githubProfile: preference1.githubProfile?.trim(),
+        ...(deptConfig[preference1.dept]?.project ? { projects: preference1.projects?.trim() } : {}),
+        ...(deptConfig[preference1.dept]?.projectLink ? { projectLink: preference1.projectLink?.trim() } : {}),
+        ...(deptConfig[preference1.dept]?.github ? { githubProfile: preference1.githubProfile?.trim() } : {}),
         answers: preference1.answers,
       },
       preference2: {
         dept: preference2.dept,
-        projects: preference2.projects?.trim(),
-        projectLink: preference2.projectLink?.trim(),
-        githubProfile: preference2.githubProfile?.trim(),
+        ...(deptConfig[preference2.dept]?.project ? { projects: preference2.projects?.trim() } : {}),
+        ...(deptConfig[preference2.dept]?.projectLink ? { projectLink: preference2.projectLink?.trim() } : {}),
+        ...(deptConfig[preference2.dept]?.github ? { githubProfile: preference2.githubProfile?.trim() } : {}),
         answers: preference2.answers,
       },
       personalQuestions: {
@@ -162,24 +154,18 @@ export async function POST(req: NextRequest) {
       submittedAt: submittedAt ? new Date(submittedAt) : new Date(),
     };
 
-    if (existing) {
-      // Delete the existing document
-      await coll.deleteOne({
-        $and: [
-          { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
-          { regno: normalizedRegno },
-        ],
-      });
-    }
-
-    // Insert the new document
-    await coll.insertOne(recruitmentData);
+    // Check if email exists and update OR insert new
+    const result = await coll.updateOne(
+        { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
+        { $set: recruitmentData },
+        { upsert: true }
+    );
 
     return NextResponse.json({
-      status: existing ? "updated" : "created",
-      message: existing
-        ? "Your previous submission has been replaced with this new one."
-        : "Application submitted successfully.",
+      status: result.upsertedCount > 0 ? "created" : "updated",
+      message: result.upsertedCount > 0 
+        ? "Application submitted successfully." 
+        : "Your previous application has been updated with this new submission.",
     });
   } catch (err) {
     console.error("Recruitment API error:", err);

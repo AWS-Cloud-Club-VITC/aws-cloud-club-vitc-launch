@@ -326,7 +326,7 @@ export default function RecruitmentApplyPage() {
                )}
 
                {/* Dynamic Questions */}
-               <div className="space-y-4 mt-6">
+               <div className="space-y-8 md:space-y-6 mt-8">
                  {config.questions.map((q, idx) => (
                     <div key={idx} className="space-y-2">
                         <Label className="text-white text-sm">
@@ -487,7 +487,7 @@ export default function RecruitmentApplyPage() {
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-gradient">General Questions</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-8 md:space-y-6">
               {personalQuestions.map((question, idx) => (
                 <div key={idx} className="space-y-2">
                   <Label className="text-white">

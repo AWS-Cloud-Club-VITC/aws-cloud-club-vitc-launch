@@ -19,7 +19,7 @@ export interface RecruitmentFormData {
   vitEmail: string;
   preference1: Preference;
   preference2: Preference;
-  generalQuestions: {
+  personalQuestions: {
     q1: string;
     q2: string;
   };
