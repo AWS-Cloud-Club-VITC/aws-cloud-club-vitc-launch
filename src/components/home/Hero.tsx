@@ -39,14 +39,14 @@ export function Hero() {
               <span className="text-gradient">VIT-C's LAUNCH</span>
             </h1>
           
-<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
-  While others learn theory, you'll build real cloud solutions
-</p>
-<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
-  <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
-</p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
+              While others learn theory, you'll build real cloud solutions
+            </p>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
+              <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
+            </p>
             <br></br>
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0 pb-2 leading-relaxed">
              Join us soon — Applications opening shortly !!
             </p>
             {invitationName && (
