@@ -10,40 +10,54 @@ export const deptConfig: Record<string, {
   "AIML": {
     label: "AIML",
     isTechnical: true,
-    project: { label: "Project", placeholder: "Describe your best project. If you are a fresher and have no projects, enter NONE", required: true },
+    project: { label: "Project", placeholder: "Describe your best project. If you are a fresher or have no projects, enter NONE", required: true },
     projectLink: { label: "Project URL", placeholder: "Project URL (GitHub Repo/Deployed Link)", required: false },
     github: { required: true },
     questions: [
-      "Why did you choose this department?",
-      "What experience do you have in this field?",
-      "How do YOU understand what \"Machine Learning\" means?",
-      "Have you heard of supervised vs unsupervised learning?"
+      "Why do you want to join this department?",
+      "Brief description of your experience in this field?",
+      `In simple terms, explain what a machine learning model is and how it improves over time.
+      (You may use an example from daily life or any project you have seen/worked on.)`,
+      `Have you used or explored any AWS AI/ML services (for example: SageMaker, Rekognition, Textract, Bedrock, etc.)? If yes, briefly explain how one service works or where it can be used.`
     ]
   },
   "Web Development": {
     label: "Web Development",
     isTechnical: true,
-    project: { label: "Project", placeholder: "Describe your best project...", required: true },
+    project: { label: "Project", placeholder: "Describe your best project. If you are a fresher or have no projects, enter NONE", required: true },
     projectLink: { label: "Project URL", placeholder: "Project URL (GitHub Repo/Deployed Link)", required: false },
     github: { required: true },
     questions: [
-      "Why did you choose this department?",
-      "What experience do you have in this field?",
-      "Have you heard of supervised vs unsupervised learning?",
-      "Have you ever tried creating a webpage or learning any web technology?"
+      "Why do you want to join this department?",
+      "Brief description of your experience in this field?",
+      "Have you ever tried creating a webpage or learning any web technology?",
+      "What is the difference between typescript and javascript?"
     ]
   },
   "Network Security": {
     label: "Network Security",
     isTechnical: true,
-    project: { label: "Project", placeholder: "Describe your networking or security related projects...", required: true },
+    project: { label: "Project", placeholder: "Describe your networking or security related projects.", required: true },
     projectLink: { label: "Project URL", placeholder: "Project URL (GitHub/Deployed)", required: false },
     github: { required: true },
     questions: [
-      "Why did you choose this department?",
-      "What experience do you have in this field?",
-      "You are hosting a web app on AWS and suddenly your bill spikes. What security-related causes would you investigate?",
+      "Why do you want to join this department?",
+      "Brief description of your experience in this field?",
+      "Have you heard of terms like firewall, authentication, or permissions? If yes, what do you think they do?",
       "Describe a security incident you've read about or experienced and what you learned from it"
+    ]
+  },
+  "Cloud & Infrastructure Engineering": {
+    label: "Cloud & Infrastructure Engineering",
+    isTechnical: true,
+    project: { label: "Project", placeholder: "Describe your cloud/infrastructure related projects. If you are a fresher or have no projects, enter NONE", required: true },
+    projectLink: { label: "Project URL", placeholder: "Project URL (GitHub/Deployed Link)", required: false },
+    github: { required: true },
+    questions: [
+      "What do you understand by cloud computing?",
+      "Have you heard of AWS or any cloud provider? Name one service and its general use.",
+      "What do you think a server does in an application?",
+      "Why do you think companies prefer cloud platforms over local servers?",
     ]
   },
   "Competitive Programming": {
@@ -52,8 +66,8 @@ export const deptConfig: Record<string, {
     project: { label: "CP Profile Links (LeetCode, HackerRank, etc.)", placeholder: "Enter your profile links for LeetCode, HackerRank, CodeChef, etc.", required: true },
     github: { required: true },
     questions: [
-      "Why did you choose this department?",
-      "What experience do you have in this field?",
+      "Why do you want to join this department?",
+      "Brief description of your experience in this field?",
       "Your solution works correctly for small inputs but becomes very slow for large inputs. What would you try to improve or change?",
       "You are stuck on a programming problem for a long time. How do you decide what to try next to move closer to a solution?"
     ]
@@ -63,57 +77,53 @@ export const deptConfig: Record<string, {
     isTechnical: true,
     project: { label: "Portfolio Links (Figma/Drive)", placeholder: "Paste links to your portfolio (Figma, Behance, Drive, etc.)", required: true },
     questions: [
-      "Why did you choose this department?",
-      "What experience do you have in this field?",
+      "Why do you want to join this department?",
+      "Brief description of your experience in this field?",
       "Users say an app feels confusing to use. What would you try to improve first?",
       "How do YOU understand what \"good user experience\" means?"
     ]
   },
 
   // NON-TECHNICAL DEPARTMENTS
-  "Social Media & Video Editing": {
-    label: "Social Media & Video Editing",
+  "Social Media & Marketing": {
+    label: "Social Media & Marketing",
     isTechnical: false,
     questions: [
-      "Why did you choose this department?",
-      "How would you promote a college event using reels?",
-      "A video has low reach. What changes would you make?"
+      "Why do you want to join this department?",
+      "How would you promote a college event using social media?",
+      "A video has low reach. What changes would you make?",
+      "What do you understand by marketing in the context of a student club or community?"
     ]
   },
-  "Design & Content": {
-    label: "Design & Content",
+  "Graphic Design & Video Editing": {
+    label: "Graphic Design & Video Editing",
     isTechnical: false,
+    project: { label: "Links to your portfolio/Work", placeholder: "Share your portfolio links or Drive links", required: true },
     questions: [
-      "Why did you choose this department?",
-      "If asked to design a poster + caption for an event, what information would you need?",
-      "What makes content readable and appealing?"
-    ]
-  },
-  "Marketing & Outreach": {
-    label: "Marketing & Outreach",
-    isTechnical: false,
-    questions: [
-      "Why did you choose this department?",
-      "Why do you think you are suitable for the Sponsorship Department?",
-      "You need to get sponsorship for a college event, but the company says \"we already sponsored many events.\" What new idea will you propose to still convince them?"
-    ]
-  },
-  "Event Management": {
-    label: "Event Management",
-    isTechnical: false,
-    questions: [
-      "Why did you choose this department?",
-      "Describe an event you have organized or volunteered for. What was your role?",
-      "How do you handle last-minute changes or crises during an ongoing event?"
+      "Why do you want to join this department?",
+      `Which design or editing tools have you heard of or used?
+      (Examples: Canva, Photoshop, Illustrator, Figma, Premiere Pro, After Effects, CapCut, DaVinci Resolve — any level is fine)`,
+      "Approximately how many reels or videos can you realistically work on in a month?",
+      "Do you have experience with motion design or motion graphics?",
+      "What type of content are you most comfortable creating?"
     ]
   },
   "Sponsorship & Outreach": {
     label: "Sponsorship & Outreach",
     isTechnical: false,
     questions: [
-      "How would you pitch AWS Cloud Club to a potential sponsor?",
-      "Do you have any prior experience in outreach or cold emailing?",
-      "Why do you want to join this dept?"
+      "Why do you want to join this department?",
+      "How important do you think personalization is in outreach messages, and why?",
+      "What do you believe makes an outreach message sound professional and trustworthy?"
+    ]
+  },
+  "Event Management": {
+    label: "Event Management",
+    isTechnical: false,
+    questions: [
+      "Why do you want to join this department?",
+      "Describe an event you have organized or volunteered for. What was your role?",
+      "How do you handle last-minute changes or crises during an ongoing event?"
     ]
   }
 };

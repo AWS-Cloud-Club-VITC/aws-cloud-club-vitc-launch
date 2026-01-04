@@ -401,7 +401,7 @@ export default function RecruitmentApplyPage() {
             Join AWS Cloud Club VIT-C
           </h1>
           <p className="text-muted-foreground text-lg mb-2">
-            Fill out the form below to apply for recruitment.
+            Fill out the form below to join us.
           </p>
           <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
             <p className="text-yellow-400 text-sm font-semibold">

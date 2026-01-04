@@ -192,7 +192,7 @@ export function EasterEgg() {
       setTimeout(() => setStage("shattered"), 1500);
     } else if (stage === "shattered") {
       setTimeout(() => {
-        window.location.href = "/recruitment";
+        window.location.href = "/joinus";
       }, 3500); // Wait for slow shatter
     }
   }, [stage]);
@@ -203,7 +203,7 @@ export function EasterEgg() {
   const borderWidth = 4;
 
   const handleSkip = () => {
-    window.location.href = "/recruitment";
+    window.location.href = "/joinus";
   };
 
   return (
