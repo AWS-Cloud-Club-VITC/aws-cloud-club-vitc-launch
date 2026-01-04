@@ -47,7 +47,7 @@ export function Hero() {
 </p>
             <br></br>
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0">
-              RECRUITMENTS WILL BE OPENED SOON !!
+             Join us soon — applications opening shortly !!
             </p>
             {invitationName && (
               <motion.div

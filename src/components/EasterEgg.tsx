@@ -48,7 +48,7 @@ export function EasterEgg() {
 
   const triggerEasterEgg = () => {
     // Easter Egg unlocks only after Dec 30th 2025, 6 PM IST
-    const unlockDate = new Date("2026-01-06T11:00:00+05:30");
+    const unlockDate = new Date("2025-01-06T11:00:00+05:30");
     if (new Date() < unlockDate) return;
 
     setIsActive(true);
@@ -192,7 +192,7 @@ export function EasterEgg() {
       setTimeout(() => setStage("shattered"), 1500);
     } else if (stage === "shattered") {
       setTimeout(() => {
-        window.location.href = "/recruitment";
+        window.location.href = "/joinus";
       }, 3500); // Wait for slow shatter
     }
   }, [stage]);
@@ -203,7 +203,7 @@ export function EasterEgg() {
   const borderWidth = 4;
 
   const handleSkip = () => {
-    window.location.href = "/recruitment";
+    window.location.href = "/joinus";
   };
 
   return (

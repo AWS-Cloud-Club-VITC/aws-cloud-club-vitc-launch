@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import type { RecruitmentFormData } from "@/lib/models/recruitment";
+import { deptConfig } from "@/lib/config/departments";
 
 export async function POST(req: NextRequest) {
   try {
@@ -44,44 +45,37 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate preference structure
+    // Validate preference structure
     const validatePreference = (pref: any, prefNum: string) => {
       if (!pref.dept) {
         return `${prefNum}: Department is required`;
       }
       
-      const dept = pref.dept;
-      const isTech = [
-        "AI & Machine Learning",
-        "Web Development",
-        "Network & Security",
-        "Competitive Programming",
-        "UI/UX"
-      ].includes(dept);
-
-      // Common questions validation
-      if (!pref.technicalQuestions?.q1 || !pref.technicalQuestions?.q2) {
-         return `${prefNum}: All questions are required`;
+      const config = deptConfig[pref.dept];
+      if (!config) {
+          return `${prefNum}: Invalid department selected`;
       }
 
-      // Department specific validation
-      if (dept === "AI & Machine Learning" || dept === "Web Development") {
-        if (!pref.projects?.trim()) return `${prefNum}: Project description is required`;
-        if (!pref.projectLink?.trim()) return `${prefNum}: Project URL is required`;
-        if (!pref.githubProfile?.trim()) return `${prefNum}: GitHub Profile is required`;
+      // Check Questions
+      if (!pref.answers) return `${prefNum}: Answers are missing`;
+      
+      for (let i = 0; i < config.questions.length; i++) {
+        const answer = pref.answers[`q${i}`];
+        if (!answer || !answer.trim()) {
+             const qShort = config.questions[i].length > 30 ? config.questions[i].substring(0, 30) + "..." : config.questions[i];
+             return `${prefNum}: Answer required for "${qShort}"`;
+        }
       }
-      else if (dept === "Network & Security") {
-        if (!pref.projects?.trim()) return `${prefNum}: Project description is required`;
-        if (!pref.projectLink?.trim()) return `${prefNum}: Project link is required`;
+
+      // Check Projects
+      if (config.project?.required && !pref.projects?.trim()) {
+        return `${prefNum}: ${config.project.label} is required`;
       }
-      else if (dept === "Competitive Programming") {
-        if (!pref.projectLink?.trim()) return `${prefNum}: GitHub repository is required`;
-        if (!pref.projects?.trim()) return `${prefNum}: CP profile links are required`;
+      if (config.projectLink?.required && !pref.projectLink?.trim()) {
+        return `${prefNum}: ${config.projectLink.label} is required`;
       }
-      else if (dept === "UI/UX") {
-         if (!pref.projects?.trim()) return `${prefNum}: Portfolio links (Drive/Figma) are required`;
-      }
-       else if (dept === "Designing") { // Non-technical
-         if (!pref.projectLink?.trim()) return `${prefNum}: Portfolio link (Drive) is required`;
+      if (config.github?.required && !pref.githubProfile?.trim()) {
+        return `${prefNum}: GitHub Profile is required`;
       }
       
       return null;
@@ -131,14 +125,6 @@ export async function POST(req: NextRequest) {
     const normalizedEmail = vitEmail.toLowerCase().trim();
     const normalizedRegno = regno.trim();
 
-    // Check if a document with the same email AND regno exists
-    const existing = await coll.findOne({
-      $and: [
-        { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
-        { regno: normalizedRegno },
-      ],
-    });
-
     // Prepare the document to insert
     const recruitmentData: RecruitmentFormData = {
       name: name.trim(),
@@ -147,23 +133,17 @@ export async function POST(req: NextRequest) {
       vitEmail: normalizedEmail,
       preference1: {
         dept: preference1.dept,
-        projects: preference1.projects?.trim(),
-        projectLink: preference1.projectLink?.trim(),
-        githubProfile: preference1.githubProfile?.trim(),
-        technicalQuestions: {
-          q1: preference1.technicalQuestions.q1.trim(),
-          q2: preference1.technicalQuestions.q2.trim(),
-        },
+        ...(deptConfig[preference1.dept]?.project ? { projects: preference1.projects?.trim() } : {}),
+        ...(deptConfig[preference1.dept]?.projectLink ? { projectLink: preference1.projectLink?.trim() } : {}),
+        ...(deptConfig[preference1.dept]?.github ? { githubProfile: preference1.githubProfile?.trim() } : {}),
+        answers: preference1.answers,
       },
       preference2: {
         dept: preference2.dept,
-        projects: preference2.projects?.trim(),
-        projectLink: preference2.projectLink?.trim(),
-        githubProfile: preference2.githubProfile?.trim(),
-        technicalQuestions: {
-          q1: preference2.technicalQuestions.q1.trim(),
-          q2: preference2.technicalQuestions.q2.trim(),
-        },
+        ...(deptConfig[preference2.dept]?.project ? { projects: preference2.projects?.trim() } : {}),
+        ...(deptConfig[preference2.dept]?.projectLink ? { projectLink: preference2.projectLink?.trim() } : {}),
+        ...(deptConfig[preference2.dept]?.github ? { githubProfile: preference2.githubProfile?.trim() } : {}),
+        answers: preference2.answers,
       },
       personalQuestions: {
         q1: personalQuestions.q1.trim(),
@@ -174,24 +154,18 @@ export async function POST(req: NextRequest) {
       submittedAt: submittedAt ? new Date(submittedAt) : new Date(),
     };
 
-    if (existing) {
-      // Delete the existing document
-      await coll.deleteOne({
-        $and: [
-          { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
-          { regno: normalizedRegno },
-        ],
-      });
-    }
-
-    // Insert the new document
-    await coll.insertOne(recruitmentData);
+    // Check if email exists and update OR insert new
+    const result = await coll.updateOne(
+        { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
+        { $set: recruitmentData },
+        { upsert: true }
+    );
 
     return NextResponse.json({
-      status: existing ? "updated" : "created",
-      message: existing
-        ? "Your previous submission has been replaced with this new one."
-        : "Application submitted successfully.",
+      status: result.upsertedCount > 0 ? "created" : "updated",
+      message: result.upsertedCount > 0 
+        ? "Application submitted successfully." 
+        : "Your previous application has been updated with this new submission.",
     });
   } catch (err) {
     console.error("Recruitment API error:", err);
