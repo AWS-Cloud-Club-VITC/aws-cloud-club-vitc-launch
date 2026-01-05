@@ -48,7 +48,7 @@ export function EasterEgg() {
 
   const triggerEasterEgg = () => {
     // Easter Egg unlocks only after Jan 5th 2026
-    const unlockDate = new Date("2026-01-05T23:59:00+05:30");
+    const unlockDate = new Date("2026-01-05T19:45:00+05:30");
     if (new Date() < unlockDate) return;
 
     setIsActive(true);

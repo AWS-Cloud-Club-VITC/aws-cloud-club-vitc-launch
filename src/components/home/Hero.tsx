@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -14,6 +14,17 @@ import Starfield from "@/components/ui/Starfield";
 export function Hero() {
     const [invitationName, setInvitationName] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLive, setIsLive] = useState(false);
+
+    useEffect(() => {
+      const checkTime = () => {
+        const target = new Date("2026-01-05T19:45:00+05:30");
+        if (new Date() >= target) {
+          setIsLive(true);
+        }
+      };
+      checkTime();
+    }, []);
 
     const handleGenerate = async (name: string) => {
         setIsLoading(true);
@@ -47,8 +58,18 @@ export function Hero() {
             </p>
             <br></br>
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0 pb-2 leading-relaxed">
-             Join us soon — Applications opening shortly !!
+             {isLive ? "Join us - Applications are live!!" : "Join us soon — Applications opening shortly !!"}
             </p>
+            {isLive && (
+              <div className="flex justify-center sm:justify-start mt-6">
+                 <Button 
+                    onClick={() => window.dispatchEvent(new Event("aws-easter-egg"))}
+                    className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-8 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300"
+                >
+                    Apply Now
+                </Button>
+              </div>
+            )}
             {invitationName && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
