@@ -40,8 +40,6 @@ export function InvitationGenerator({
     void checkLimit();
   }, []);
 
-  const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setInfo(null);
@@ -115,7 +113,19 @@ export function InvitationGenerator({
     }
   };
 
-  const disabled = isLoading || localLoading || isClosed;
+  const [isLive, setIsLive] = useState(false);
+
+  useEffect(() => {
+    const checkTime = () => {
+      const target = new Date("2026-01-06T10:00:00+05:30");
+      if (new Date() >= target) {
+        setIsLive(true);
+      }
+    };
+    checkTime();
+  }, []);
+
+  const disabled = isLoading || localLoading || isClosed || isLive;
 
   if (isClosed) {
     return (
@@ -192,7 +202,6 @@ export function InvitationGenerator({
                   }
                 }}
                 className="bg-black/60 border-white/10 text-white placeholder:text-white/20 h-14 text-sm sm:text-lg focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500/50 transition-all shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] hover:bg-black/80 hover:border-white/20 rounded-xl backdrop-blur-sm"
-                disabled={disabled}
               />
 
               <Input
