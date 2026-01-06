@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { InvitationGenerator } from "./InvitationGenerator";
 import { InvitationCard } from "./InvitationCard";
 import { SocialShare } from "./SocialShare";
@@ -18,7 +16,7 @@ export function Hero() {
 
     useEffect(() => {
       const checkTime = () => {
-        const target = new Date("2026-01-05T19:45:00+05:30");
+        const target = new Date("2026-01-06T10:00:00+05:30");
         if (new Date() >= target) {
           setIsLive(true);
         }
@@ -58,7 +56,7 @@ export function Hero() {
             </p>
             <br></br>
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0 pb-2 leading-relaxed">
-             {isLive ? "Join us - Applications are live!!" : "Join us soon — Applications opening shortly !!"}
+             {isLive ? "Join us - Applications are live!!" : "Join us soon - applications open shortly !!"}
             </p>
             {isLive && (
               <div className="flex justify-center sm:justify-start mt-6">
