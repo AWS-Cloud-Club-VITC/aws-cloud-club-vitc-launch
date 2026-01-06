@@ -16,7 +16,7 @@ export function Hero() {
 
     useEffect(() => {
       const checkTime = () => {
-        const target = new Date("2026-01-06T10:00:00+05:30");
+        const target = new Date("2026-01-06T10:30:00+05:30");
         if (new Date() >= target) {
           setIsLive(true);
         }
