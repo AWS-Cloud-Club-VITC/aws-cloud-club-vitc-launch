@@ -56,7 +56,7 @@ export function Hero() {
             </p>
             <br></br>
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center sm:text-left font-heading font-bold tracking-wide text-gradient [margin-top:2.5lh] lg:mt-0 pb-2 leading-relaxed">
-             {isLive ? "Join us - Applications are live!!" : "Join us soon - applications open shortly !!"}
+             {isLive ? "Join us - Applications are live!!" : "Join us soon - applications opening shortly !!"}
             </p>
             {isLive && (
               <div className="flex justify-center sm:justify-start mt-6">
