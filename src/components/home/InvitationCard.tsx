@@ -19,7 +19,7 @@ export function InvitationCard({ name }: InvitationCardProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full max-w-md mx-auto"
+            className="relative w-full max-w-md mx-auto lg:mx-0 lg:ml-auto"
         >
             {/* Glow Effects */}
             <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-yellow-500 to-yellow-700 opacity-50 blur-xl animate-pulse" />
@@ -66,7 +66,7 @@ export function InvitationCard({ name }: InvitationCardProps) {
                     </div>
 
                     <div className="w-full pt-4">
-                        <Button 
+                        <Button
                             className="w-full h-12 text-lg font-medium shadow-lg shadow-yellow-500/20"
                             onClick={() => {
                                 localStorage.setItem('launch_pass_name', name);

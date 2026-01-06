@@ -133,7 +133,7 @@ export function InvitationGenerator({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md mx-auto"
+        className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto"
       >
         <Card className="bg-metal-glossy p-6 sm:p-8 relative overflow-hidden group">
           <div className="absolute inset-0 bg-linear-to-tr from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -162,7 +162,7 @@ export function InvitationGenerator({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-md mx-auto"
+      className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto"
     >
       <Card className="bg-metal-glossy p-6 sm:p-8 relative overflow-hidden group">
         {/* Metallic Sheen Effect */}

@@ -33,7 +33,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center pb-48 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-28 lg:pt-20 pb-48 overflow-hidden">
       {/* Background Effects */}
       <Starfield starCount={200} speed={0.2} />
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -55,30 +55,31 @@ export function Hero() {
             <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
           </p>
 
-          {invitationName && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex justify-center lg:justify-start [margin-top:2lh] lg:mt-6"
-            >
-            </motion.div>
-          )}
+
         </div>
 
         {/* Right Side: Interactive Module */}
         <div className="w-full flex flex-col justify-center lg:items-end space-y-8">
-          <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center lg:text-right font-heading font-bold tracking-wide text-gradient leading-relaxed">
-            {isLive ? "Join us - Applications are live!!" : "Join us soon - applications opening shortly !!"}
-          </p>
-          {isLive && (
-            <div className="flex justify-center lg:justify-end">
-              <Button
-                className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300"
-              >
-                <a href="https://www.awscloudclubvit.in/joinus/apply">Apply Now</a>
-              </Button>
-            </div>
+          {invitationName ? (
+            <InvitationCard name={invitationName} />
+          ) : isLive ? (
+            <>
+              <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center lg:text-right font-heading font-bold tracking-wide text-gradient leading-relaxed">
+                Join us - Applications are live!!
+              </p>
+              <div className="flex justify-center lg:justify-end">
+                <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
+                  <a href="https://www.awscloudclubvit.in/joinus/apply">
+                    Apply Now
+                  </a>
+                </Button>
+              </div>
+            </>
+          ) : (
+            <InvitationGenerator
+              onGenerate={handleGenerate}
+              isLoading={isLoading}
+            />
           )}
         </div>
       </div>
