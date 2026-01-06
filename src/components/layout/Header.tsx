@@ -90,7 +90,13 @@ export function Header() {
             </span>
           </div>
         </Link>
-
+        {/* <div className="flex flex-col leading-tight">
+          <span className="text-xs sm:text-lg font-bold tracking-tight text-white text-align-r">
+            <Link href="/events" className="text-white hover:text-primary transition-colors duration-200">
+              Events
+            </Link>
+          </span>
+        </div> */}
         {showCountdown && (
           <div className="rounded-full bg-white/5 px-4 py-2 text-xs sm:text-sm font-medium text-white border border-white/10 backdrop-blur-sm flex items-center gap-3">
             <span className="text-primary font-bold">Jan 06ᵗʰ</span>
