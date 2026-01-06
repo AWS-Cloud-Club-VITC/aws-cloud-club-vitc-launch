@@ -187,7 +187,7 @@ export function InvitationGenerator({
             <div className="space-y-2">
               <Input
                 type="text"
-                placeholder="Enter your full name"
+                placeholder="Type aws to apply"
                 value={name}
                 onChange={(e) => {
                   const newName = e.target.value;
