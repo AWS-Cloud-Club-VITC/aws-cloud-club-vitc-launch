@@ -39,35 +39,35 @@ export function Hero() {
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-4 flex flex-col gap-12 items-center relative z-10">
 
-        <div className="text-center lg:text-left space-y-6 lg:space-y-6">
+        <div className="text-center space-y-6">
           {/* Mobile: line-height rhythm, Desktop: unchanged */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-tight [margin-bottom:0.6lh] lg:mb-0">
             AWS CLOUD CLUB<br />
             <span className="text-gradient">VIT-C</span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
             While others learn theory, you'll build real cloud solutions
           </p>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
             <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
           </p>
 
 
         </div>
 
-        {/* Right Side: Interactive Module */}
-        <div className="w-full flex flex-col justify-center lg:items-end space-y-8">
+        {/* Below: Interactive Module */}
+        <div className="w-full flex flex-col justify-center items-center space-y-8">
           {invitationName ? (
             <InvitationCard name={invitationName} />
           ) : isLive ? (
             <>
-              <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center lg:text-right font-heading font-bold tracking-wide text-gradient leading-relaxed">
+              <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-heading font-bold tracking-wide text-gradient leading-relaxed">
                 Join us - Applications are live!!
               </p>
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center">
                 <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
                   <a href="https://www.awscloudclubvit.in/joinus/apply">
                     Apply Now
