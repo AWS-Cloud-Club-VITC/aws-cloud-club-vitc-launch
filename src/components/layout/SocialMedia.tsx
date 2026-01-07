@@ -16,25 +16,25 @@ interface SocialLink {
 
 export function SocialMedia() {
     const socialLinks: SocialLink[] = [
-        // {
-        //     name: "Instagram",
-        //     icon: Instagram,
-        //     url: "https://www.instagram.com/awsvitc/",
-        //     color: "hover:text-pink-500",
-        //     isSvg: false,
-        // },
+        {
+            name: "Instagram",
+            icon: Instagram,
+            url: "https://www.instagram.com/awsvitc/",
+            color: "hover:text-[#FF9900]",
+            isSvg: false,
+        },
         // {
         //     name: "LinkedIn",
         //     icon: Linkedin,
         //     url: "https://www.linkedin.com/in/aws-vitc/",
-        //     color: "hover:text-blue-400",
+        //     color: "hover:text-[#FF9900]",
         //     isSvg: false,
         // },
         {
             name: "Meetup",
             icon: null,
             url: "https://www.meetup.com/aws-cloud-club-at-vit-chennai/",
-            color: "hover:text-red-400",
+            color: "hover:text-[#FF9900]",
             isSvg: true,
             svgPath: "/meetup-svg.svg",
         },
