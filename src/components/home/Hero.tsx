@@ -6,6 +6,7 @@ import { InvitationGenerator } from "./InvitationGenerator";
 import { InvitationCard } from "./InvitationCard";
 import { SocialShare } from "./SocialShare";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 import Starfield from "@/components/ui/Starfield";
 
@@ -68,11 +69,11 @@ export function Hero() {
                 Join us - Applications are live!!
               </p>
               <div className="flex justify-center">
-                <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
-                  <a href="https://www.awscloudclubvit.in/joinus/apply">
+                <Link href="/joinus/apply">
+                  <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
                     Apply Now
-                  </a>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </>
           ) : (

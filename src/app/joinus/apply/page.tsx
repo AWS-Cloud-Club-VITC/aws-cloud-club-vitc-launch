@@ -391,7 +391,7 @@ export default function RecruitmentApplyPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <Link href="/joinus">
+          <Link href="/">
             <Button variant="ghost" className="mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
