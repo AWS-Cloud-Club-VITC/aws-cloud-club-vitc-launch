@@ -391,14 +391,14 @@ export default function RecruitmentApplyPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <Link href="/recruitment">
+          <Link href="/">
             <Button variant="ghost" className="mb-4">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold font-heading text-gradient mb-4">
-            Join AWS Cloud Club VIT-C
+            Joinj AWS Cloud Club VIT-C
           </h1>
           <p className="text-muted-foreground text-lg mb-2">
             Fill out the form below to join us.
