@@ -66,14 +66,25 @@ export function Hero() {
           ) : isLive ? (
             <>
               <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-heading font-bold tracking-wide text-gradient leading-relaxed">
-                Join us - Applications are live!!
+                {new Date() >= new Date("2026-02-05T00:00:00+05:30") 
+                  ? "Applications are Closed" 
+                  : "Join us - Applications are live!!"}
               </p>
               <div className="flex justify-center">
-                <Link href="/joinus/apply">
-                  <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
-                    Apply Now
+                {new Date() >= new Date("2026-02-05T00:00:00+05:30") ? (
+                  <Button 
+                    disabled
+                    className="bg-gray-600 text-gray-400 font-bold text-lg px-12 py-6 rounded-full cursor-not-allowed opacity-50"
+                  >
+                    Try Next Time
                   </Button>
-                </Link>
+                ) : (
+                  <Link href="/joinus/apply">
+                    <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
+                      Apply Now
+                    </Button>
+                  </Link>
+                )}
               </div>
             </>
           ) : (
@@ -87,3 +98,4 @@ export function Hero() {
     </section>
   );
 }
+
