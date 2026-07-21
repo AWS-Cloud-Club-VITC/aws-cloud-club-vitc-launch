@@ -1,109 +1,110 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import MagnetLines from "@/components/ui/MagnetLines";
-import ScrollFloat from "@/components/ui/ScrollFloat";
-import ScrollReveal from "@/components/ui/ScrollReveal";
-import { FolderKanban, CalendarDays, GraduationCap } from "lucide-react";
+import React from "react";
+import Link from "next/link";
+import { FolderKanban, CalendarDays, GraduationCap, ArrowUpRight } from "lucide-react";
 
 const features = [
- {
+  {
+    number: "01",
     title: "Projects",
     icon: FolderKanban,
-    description: "Build production-ready applications using AWS services",
-    image: "bg-gradient-to-br from-purple-900 to-blue-900",
+    description: "Build production-ready cloud applications using cutting-edge AWS services and AI tools.",
   },
   {
-    title: "Events",
+    number: "02",
+    title: "Events & Hackathons",
     icon: CalendarDays,
-    description:
-      " Learn from AWS professionals → Network with industry leaders",
-    image: "bg-gradient-to-br from-blue-900 to-cyan-900",
+    description: "Participate in research challenges like FRONTIER, learn from AWS heroes & network with experts.",
   },
   {
-    title: "Get Certified Roadmap",
+    number: "03",
+    title: "Certification Roadmap",
     icon: GraduationCap,
-    description: "Fast-track your AWS certification with structured guidance",
-    image: "bg-gradient-to-br from-indigo-900 to-purple-900",
+    description: "Fast-track your AWS Cloud Practitioner and Solutions Architect certifications with guided roadmaps.",
   },
 ];
 
 export function EventFeatures() {
-    return (
-        <section className="relative overflow-hidden">
-            {/* Magnet Lines Background */}
-            <div className="absolute inset-0 z-0 opacity-30">
-                <MagnetLines
-                    rows={10}
-                    cols={20}
-                    lineColor="rgba(147, 51, 234, 0.5)"
-                    lineHeight="40px"
-                    lineWidth="2px"
-                />
-            </div>
+  return (
+    <section className="relative py-24 px-margin bg-background border-b-border-thick border-primary-container">
+      <div className="max-w-container-max mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="mb-16 text-center">
+          <div className="inline-block border-2 border-primary-container px-4 py-1 mb-4 bg-surface-container">
+            <span className="font-label-mono text-primary-container uppercase tracking-widest text-xs font-bold">
+              WHAT YOU&apos;LL MASTER IN AWS CLOUD CLUB
+            </span>
+          </div>
+          <h2 className="font-display-xl text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white">
+            THE THREE <span className="text-primary-container">PILLARS</span>
+          </h2>
+        </div>
 
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="mb-12 text-center">
-                    <ScrollFloat
-                        animationDuration={1}
-                        ease="back.inOut(2)"
-                        scrollStart="center bottom+=50%"
-                        scrollEnd="bottom bottom-=40%"
-                        stagger={0.03}
-                        containerClassName="text-3xl font-bold text-white font-heading mb-4"
-                    >
-                        What You'll Master in AWS
-                    </ScrollFloat>
-
-                    <div className="max-w-2xl mx-auto">
-                        <ScrollReveal
-                            baseOpacity={0.3}
-                            enableBlur={true}
-                            baseRotation={2}
-                            blurStrength={4}
-                            textClassName="text-muted-foreground text-md sm:text-lg"
-                        >
-                            Master Cloud Technology Through The Three Pillars
-                        </ScrollReveal>
-                    </div>
+        {/* Feature Cards Grid */}
+        <div className="grid gap-8 md:grid-cols-3">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={index}
+                className="track-card bg-surface-container p-8 relative group overflow-hidden flex flex-col justify-between"
+              >
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                  <Icon className="w-24 h-24 text-primary-container" />
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-3">
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
-                        >
-                            <Card className="overflow-hidden bg-metal-glossy border-white/5 hover:border-yellow-500/30 transition-all duration-500 group cursor-target h-full hover:shadow-[0_0_30px_-10px_rgba(255,215,0,0.15)]">
-                                <div className={`h-48 w-full ${feature.image} relative overflow-hidden`}>
-                                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-500" />
-                                    {/* Metallic Overlay on Image */}
-                                    <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="bg-primary-container text-black font-label-mono px-3 py-1 text-sm font-bold border-2 border-black">
+                      {feature.number}
+                    </span>
+                    <Icon className="w-8 h-8 text-primary-container" />
+                  </div>
 
-                                    <div className="absolute inset-0 flex items-center justify-center text-white/20 text-4xl font-bold transform group-hover:scale-110 transition-transform duration-700">
-                                        <feature.icon className="h-20 w-20 opacity-20 group-hover:opacity-100 group-hover:text-yellow-500/20 transition-all duration-500" />
-                                    </div>
-                                </div>
-                                <CardHeader className="relative z-10 -mt-10 px-6">
-                                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br from-gray-900 to-black border border-white/10 text-yellow-500 shadow-lg group-hover:scale-110 group-hover:border-yellow-500/50 transition-all duration-300">
-                                        <feature.icon className="h-7 w-7" />
-                                    </div>
-                                    <CardTitle className="text-xl text-white font-heading tracking-wide group-hover:text-yellow-400 transition-colors">{feature.title}</CardTitle>
-                                </CardHeader>
-                                <CardContent className="px-6 pb-8">
-                                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                                        {feature.description}
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
+                  <h3 className="font-headline-lg text-2xl uppercase leading-tight mb-4 text-white group-hover:text-primary-container transition-colors">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-on-surface-variant font-body-lg text-base leading-relaxed mb-6">
+                    {feature.description}
+                  </p>
                 </div>
-            </div>
-        </section>
-    );
+
+                <div className="pt-4 border-t border-surface-variant">
+                  <Link
+                    href="/events"
+                    className="font-label-mono text-xs text-primary-container uppercase tracking-wider font-bold flex items-center gap-1 group-hover:underline"
+                  >
+                    <span>EXPLORE PROGRAM</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Banner */}
+        <div className="mt-16 industrial-border bg-surface-container-lowest p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <span className="font-label-mono text-primary-container text-xs uppercase block mb-1">
+              NEXT UPCOMING EVENT
+            </span>
+            <h3 className="font-headline-lg text-3xl uppercase text-white">
+              FRONTIER - AI RESEARCH &amp; AGENTIC CHALLENGE
+            </h3>
+            <p className="text-on-surface-variant text-sm mt-1">
+              July 30 &amp; 31 · Netaji Auditorium AB-1 · Prize Pool ₹15,000
+            </p>
+          </div>
+          <Link href="/events" className="offset-button text-xl px-8 py-3 whitespace-nowrap">
+            REGISTER FOR FRONTIER
+          </Link>
+        </div>
+
+      </div>
+    </section>
+  );
 }

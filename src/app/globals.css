@@ -212,4 +212,163 @@
     font-feature-settings: "liga" off, "clig" off, "dlig" off, "hlig" off, "calt" off, "swsh" off, "cswh" off !important;
     font-variant-ligatures: none !important;
   }
-}
+
+  /* Industrial Cyber-Brutalist FRONTIER Theme Utilities */
+  .industrial-border {
+    border: 3px solid #ffb800;
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+
+  .offset-button {
+    position: relative;
+    background-color: #ffb800;
+    color: #000000;
+    font-family: var(--font-anton), 'Anton', sans-serif;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    transition: all 0.15s ease;
+    border: 1px solid #000000;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .offset-button::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #ffb800;
+    z-index: -1;
+    transition: all 0.15s ease;
+  }
+
+  .offset-button:hover {
+    transform: translate(2px, 2px);
+  }
+
+  .track-card {
+    border: 1px solid #e5e2e1;
+    transition: all 0.3s ease;
+  }
+
+  .track-card:hover {
+    border-color: #ffb800;
+    border-width: 3px;
+  }
+
+  .scan-line {
+    width: 100%;
+    height: 2px;
+    background: #ffb800;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scan 2s linear infinite;
+  }
+
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+
+  .pixel-pattern {
+    background-image: radial-gradient(#ffffff22 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Font mappings */
+  .font-headline-lg {
+    font-family: var(--font-anton), 'Anton', sans-serif;
+  }
+
+  .font-display-xl {
+    font-family: var(--font-anton), 'Anton', sans-serif;
+  }
+
+  .font-body-lg {
+    font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  }
+
+  .font-title-md {
+    font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  }
+
+  .font-body-sm {
+    font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  }
+
+  .font-label-mono {
+    font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  }
+
+  /* Color token mappings */
+  .bg-surface-container-lowest {
+    background-color: #0e0e0e;
+  }
+  .bg-surface-container-low {
+    background-color: #1c1b1b;
+  }
+  .bg-surface-container {
+    background-color: #201f1f;
+  }
+  .bg-surface-container-high {
+    background-color: #2a2a2a;
+  }
+  .bg-surface-container-highest {
+    background-color: #353534;
+  }
+  .bg-primary-container {
+    background-color: #ffb800;
+  }
+
+  .text-primary-container {
+    color: #ffb800;
+  }
+  .text-on-primary-container {
+    color: #6b4c00;
+  }
+  .text-on-surface {
+    color: #e5e2e1;
+  }
+  .text-on-surface-variant {
+    color: #d5c4ab;
+  }
+
+  .border-primary-container {
+    border-color: #ffb800;
+  }
+  .border-surface-variant {
+    border-color: #353534;
+  }
+  .border-border-thick,
+  .border-b-border-thick {
+    border-bottom-width: 3px;
+    border-color: #ffb800;
+  }
+  .border-y-border-thick {
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    border-color: #ffb800;
+  }
+  .border-b-border-thin {
+    border-bottom-width: 1px;
+    border-color: #353534;
+  }
+  .border-3 {
+    border-width: 3px;
+  }
+  .px-margin {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .py-unit {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .max-w-container-max {
+    max-width: 1280px;
+  }
+}

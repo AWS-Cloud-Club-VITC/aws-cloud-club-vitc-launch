@@ -1,86 +1,66 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { InvitationGenerator } from "./InvitationGenerator";
-import { InvitationCard } from "./InvitationCard";
-import { SocialShare } from "./SocialShare";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import Link from "next/link";
-
 import Starfield from "@/components/ui/Starfield";
 
 export function Hero() {
-  const [invitationName, setInvitationName] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLive, setIsLive] = useState(false);
-
-  useEffect(() => {
-    const checkTime = () => {
-      const target = new Date("2026-01-06T10:30:00+05:30");
-      if (new Date() >= target) {
-        setIsLive(true);
-      }
-    };
-    checkTime();
-  }, []);
-
-  const handleGenerate = async (name: string) => {
-    setIsLoading(true);
-    // Mock AI generation delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setInvitationName(name);
-    setIsLoading(false);
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-28 lg:pt-20 pb-48 overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center justify-center pt-28 lg:pt-24 pb-20 overflow-hidden bg-surface-container-lowest border-b-border-thick border-primary-container">
       {/* Background Effects */}
-      <Starfield starCount={200} speed={0.2} />
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <Starfield starCount={180} speed={0.2} />
+      <div className="absolute inset-0 pixel-pattern opacity-40 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary-container/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 flex flex-col gap-12 items-center relative z-10">
-
-        <div className="text-center space-y-6">
-          {/* Mobile: line-height rhythm, Desktop: unchanged */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-tight [margin-bottom:0.6lh] lg:mb-0">
-            AWS CLOUD CLUB<br />
-            <span className="text-gradient">VIT-C</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed [margin-bottom:1.5lh] lg:mb-0">
-            While others learn theory, you'll build real cloud solutions
-          </p>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed [margin-bottom:2.5lh] lg:mb-0">
-            <span className="text-gradient font-semibold">Join VIT-C's first AWS Cloud Club</span> – where students become cloud architects
-          </p>
-
-
+      <div className="container mx-auto px-margin flex flex-col gap-10 items-center relative z-10 text-center max-w-container-max">
+        
+        {/* Top Tag Header */}
+        <div className="inline-block border-2 border-primary-container px-4 py-1.5 bg-black/60 backdrop-blur-sm">
+          <span className="font-label-mono text-primary-container uppercase tracking-widest text-xs sm:text-sm font-bold">
+            AWS STUDENT BUILDER GROUP · VIT CHENNAI
+          </span>
         </div>
 
-        {/* Below: Interactive Module */}
-        <div className="w-full flex flex-col justify-center items-center space-y-8">
-          {invitationName ? (
-            <InvitationCard name={invitationName} />
-          ) : isLive ? (
-            <>
-              <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-heading font-bold tracking-wide text-gradient leading-relaxed">
-Recruitments Results are Out !!              </p>
-              <div className="flex justify-center">
-                <Link href="https://www.instagram.com/awsvitc/">
-                  <Button className="bg-gradient-to-r from-[#FF9900] to-[#FFD700] text-black font-bold text-lg px-12 py-6 rounded-full shadow-[0_0_20px_rgba(255,153,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] hover:scale-105 transition-all duration-300">
-                  Check Here
-                  </Button>
+        {/* Main Headlines with Industrial Typography */}
+        <div className="space-y-6 max-w-4xl">
+          <h1 className="font-display-xl text-5xl sm:text-7xl md:text-8xl lg:text-[90px] uppercase leading-none tracking-tighter text-white">
+            AWS STUDENT BUILDER GROUP <br />
+            <span className="text-primary-container">VIT-C</span>
+          </h1>
+          <p className="font-body-lg text-lg sm:text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            While others learn theory, you&apos;ll build real cloud &amp; AI solutions.
+          </p>
+        </div>
+
+        {/* Event Banner Card (Industrial Neo-Brutalist Theme) */}
+        <div className="w-full max-w-3xl mt-4">
+          <div className="industrial-border bg-surface-container p-8 relative overflow-hidden text-left group">
+            <div className="scan-line" />
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+              <div className="space-y-2">
+                <h3 className="font-headline-lg text-2xl sm:text-4xl text-white uppercase">
+                  FRONTIER: BUILD THE NEXT AI
+                </h3>
+                <p className="font-label-mono text-primary-container text-sm sm:text-base font-bold uppercase">
+                  JULY 30 &amp; 31 · ₹15,000 PRIZE POOL
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <Link href="/events" className="offset-button text-lg px-6 py-3 text-center">
+                  VIEW EVENT
+                </Link>
+                <Link
+                  href="/joinus"
+                  className="bg-black text-white font-headline-lg text-lg px-6 py-3 uppercase border-2 border-primary-container hover:bg-primary-container hover:text-black transition-colors text-center"
+                >
+                  JOIN CLUB
                 </Link>
               </div>
-            </>
-          ) : (
-            <InvitationGenerator
-              onGenerate={handleGenerate}
-              isLoading={isLoading}
-            />
-          )}
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
   );

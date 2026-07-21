@@ -69,46 +69,43 @@ export function Header() {
   }, [showCountdown]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b-2 border-primary-container bg-black/85 backdrop-blur-md">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative" onClick={handleLogoTap}>
+          <div className="relative cursor-pointer flex items-center" onClick={handleLogoTap}>
             <Image
               src="/aws_logo.png"
               alt="AWS Cloud Clubs VIT Chennai"
-              width={80}
-              height={80}
-              className="rounded-lg object-contain shadow-lg"
+              width={100}
+              height={100}
+              className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-lg object-contain shadow-lg"
               quality={100}
               priority
             />
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="text-xs sm:text-lg font-bold tracking-tight text-white">
-              AWS CLOUD CLUB{" "}
-              <span className="block sm:inline text-primary">VIT-C</span>
+            <span className="text-xs sm:text-base md:text-lg font-bold tracking-wide text-white font-headline-lg uppercase">
+              AWS STUDENT BUILDER GROUP{" "}
+              <span className="block sm:inline text-primary-container">VIT-C</span>
             </span>
           </div>
         </Link>
-        {/* <div className="flex flex-col leading-tight">
-          <span className="text-xs sm:text-lg font-bold tracking-tight text-white text-align-r">
-            <Link href="/events" className="text-white hover:text-primary transition-colors duration-200">
-              Events
-            </Link>
-          </span>
-        </div> */}
-        {showCountdown && (
-          <div className="rounded-full bg-white/5 px-4 py-2 text-xs sm:text-sm font-medium text-white border border-white/10 backdrop-blur-sm flex items-center gap-3">
-            <span className="text-primary font-bold">Jan 06ᵗʰ</span>
-            <div className="h-4 w-[1px] bg-white/10 hidden sm:block"></div>
-            <div className="flex gap-2 font-mono tabular-nums text-white/80">
-              <span>{timeLeft.days}d</span>
-              <span>{timeLeft.hours}h</span>
-              <span>{timeLeft.minutes}m</span>
-              <span className="hidden sm:inline">{timeLeft.seconds}s</span>
-            </div>
-          </div>
-        )}
+        
+        <nav className="flex items-center gap-4 sm:gap-6">
+          <Link
+            href="/events"
+            className="flex items-center gap-1.5 bg-primary-container text-black font-headline-lg px-3.5 py-1.5 text-xs sm:text-sm font-bold uppercase hover:bg-white transition-colors border border-black shadow-[2px_2px_0px_#fff]"
+          >
+            <span className="material-symbols-outlined text-sm">rocket_launch</span>
+            <span>FRONTIER AI</span>
+          </Link>
+          <Link
+            href="/joinus"
+            className="text-on-surface-variant font-label-mono text-xs sm:text-sm hover:text-primary-container transition-colors uppercase hidden sm:inline-block"
+          >
+            Join Us
+          </Link>
+        </nav>
       </div>
     </header>
   );
