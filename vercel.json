@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/frontier", "destination": "https://frontier-sigma-three.vercel.app/frontier" },
+    { "source": "/frontier/:path*", "destination": "https://frontier-sigma-three.vercel.app/frontier/:path*" }
+  ]
+}
