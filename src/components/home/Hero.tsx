@@ -10,6 +10,8 @@ import Link from "next/link";
 
 import Starfield from "@/components/ui/Starfield";
 
+const applicationDeadline = new Date("2026-08-25T23:59:59+05:30");
+
 export function Hero() {
   const [invitationName, setInvitationName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -66,12 +68,12 @@ export function Hero() {
           ) : isLive ? (
             <>
               <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-heading font-bold tracking-wide text-gradient leading-relaxed">
-                {new Date() >= new Date("2026-02-05T00:00:00+05:30") 
+                {new Date() > applicationDeadline
                   ? "Applications are Closed" 
                   : "Join us - Applications are live!!"}
               </p>
               <div className="flex justify-center">
-                {new Date() >= new Date("2026-02-05T00:00:00+05:30") ? (
+                {new Date() > applicationDeadline ? (
                   <Button 
                     disabled
                     className="bg-gray-600 text-gray-400 font-bold text-lg px-12 py-6 rounded-full cursor-not-allowed opacity-50"
