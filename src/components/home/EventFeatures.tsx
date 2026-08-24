@@ -95,9 +95,7 @@ export function EventFeatures() {
             <h3 className="font-headline-lg text-3xl uppercase text-white">
               TECHNOVIT&apos;26 - THREE EVENTS, THREE DAYS
             </h3>
-            <p className="text-on-surface-variant text-sm mt-1">
-              Aug 31 – Sep 2 · Kamaraj Auditorium &amp; AB3-501 · VIT Chennai
-            </p>
+            
           </div>
           <Link href="#technovit" className="offset-button text-xl px-8 py-3 whitespace-nowrap">
             VIEW TECHNOVIT EVENTS

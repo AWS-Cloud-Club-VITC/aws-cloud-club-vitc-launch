@@ -4,6 +4,14 @@ import clientPromise from "@/lib/mongodb";
 import type { RecruitmentFormData } from "@/lib/models/recruitment";
 import { deptConfig } from "@/lib/config/departments";
 
+type IncomingPreference = {
+  dept?: string;
+  projects?: string;
+  projectLink?: string;
+  githubProfile?: string;
+  answers?: Record<string, string>;
+};
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -16,6 +24,7 @@ export async function POST(req: NextRequest) {
       preference2,
       personalQuestions,
       linkedinProfile,
+      builderCenterUsername,
       whyJoin,
       submittedAt,
     } = body ?? {};
@@ -49,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     // Validate preference structure
     // Validate preference structure
-    const validatePreference = (pref: any, prefNum: string) => {
+    const validatePreference = (pref: IncomingPreference, prefNum: string) => {
       if (!pref.dept) {
         return `${prefNum}: Department is required`;
       }
@@ -120,9 +129,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!linkedinProfile || !whyJoin) {
+    if (!linkedinProfile || !builderCenterUsername || !whyJoin) {
       return NextResponse.json(
-        { error: "LinkedIn profile and whyJoin are required" },
+        {
+          error:
+            "LinkedIn profile, Builder Center alias/username, and whyJoin are required",
+        },
         { status: 400 },
       );
     }
@@ -172,6 +184,7 @@ export async function POST(req: NextRequest) {
         q2: personalQuestions.q2.trim(),
       },
       linkedinProfile: linkedinProfile.trim(),
+      builderCenterUsername: builderCenterUsername.trim(),
       whyJoin: whyJoin.trim(),
       submittedAt: submittedAt ? new Date(submittedAt) : new Date(),
     };

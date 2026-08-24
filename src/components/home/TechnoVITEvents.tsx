@@ -63,15 +63,12 @@ export function TechnoVITEvents() {
         <div className="mb-16 text-center">
           <div className="inline-block border-2 border-primary-container px-4 py-1 mb-4 bg-surface-container">
             <span className="font-label-mono text-primary-container uppercase tracking-widest text-xs font-bold">
-              AWS STUDENT BUILDER GROUP PRESENTS
+              AWS STUDENT BUILDER GROUP, VITC
             </span>
           </div>
-          <h2 className="font-display-xl text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white">
+          <h2 className="font-display-xl text-4xl sm:text-6xl md:text-7xl uppercase tracking-normal text-white">
             TECHNO<span className="text-primary-container">VIT&apos;26</span>
           </h2>
-          <p className="font-label-mono text-on-surface-variant uppercase tracking-widest text-xs sm:text-sm mt-4">
-            31 AUG – 2 SEP 2026 · VIT CHENNAI
-          </p>
         </div>
 
         {/* Event Cards */}

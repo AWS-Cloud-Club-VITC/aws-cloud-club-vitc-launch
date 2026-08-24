@@ -24,6 +24,7 @@ export interface RecruitmentFormData {
     q2: string;
   };
   linkedinProfile: string;
+  builderCenterUsername: string;
   whyJoin: string;
   submittedAt: Date;
 }

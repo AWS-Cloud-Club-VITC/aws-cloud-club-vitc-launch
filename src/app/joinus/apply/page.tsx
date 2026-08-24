@@ -21,6 +21,14 @@ const personalQuestions = [
   "How do you handle conflicts or disagreements in a team?",
 ];
 
+type PreferenceFormState = {
+  dept: string;
+  projects: string;
+  projectLink: string;
+  githubProfile: string;
+  answers: Record<string, string>;
+};
+
 export default function RecruitmentApplyPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -46,6 +54,7 @@ export default function RecruitmentApplyPage() {
       q2: "",
     },
     linkedinProfile: "",
+    builderCenterUsername: "",
     whyJoin: "",
   });
 
@@ -66,7 +75,10 @@ export default function RecruitmentApplyPage() {
       return "Please enter a valid VIT email (@vitstudent.ac.in)";
 
     // Helper for validation
-    const validatePreferenceHelper = (pref: any, prefName: string) => {
+    const validatePreferenceHelper = (
+      pref: PreferenceFormState,
+      prefName: string,
+    ) => {
       if (!pref.dept) return `${prefName}: Department is required`;
 
       const config = deptConfig[pref.dept];
@@ -129,6 +141,8 @@ export default function RecruitmentApplyPage() {
 
     if (!formData.linkedinProfile.trim())
       return "LinkedIn profile URL is required";
+    if (!formData.builderCenterUsername.trim())
+      return "Builder Center alias/username is required";
     if (!formData.whyJoin.trim())
       return "Please tell us why you want to join this club";
 
@@ -189,9 +203,10 @@ export default function RecruitmentApplyPage() {
         },
         personalQuestions: { q1: "", q2: "" },
         linkedinProfile: "",
+        builderCenterUsername: "",
         whyJoin: "",
       });
-    } catch (err) {
+    } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
@@ -434,7 +449,7 @@ export default function RecruitmentApplyPage() {
                 Application Submitted!
               </h2>
               <p className="text-muted-foreground">
-                Your application has been successfully submitted. We'll review
+                Your application has been successfully submitted. We&apos;ll review
                 it and get back to you soon.
               </p>
               <div className="pt-4 space-y-2">
@@ -617,6 +632,39 @@ export default function RecruitmentApplyPage() {
                     })
                   }
                   placeholder="https://linkedin.com/in/yourprofile"
+                  className="text-white placeholder:text-muted-foreground"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="builderCenterUsername" className="text-white">
+                  Builder Center Alias / Username{" "}
+                  <span className="text-yellow-500">*</span>
+                </Label>
+
+                <p className="text-xs text-yellow-400">
+                  If you do not have one, create it at{" "}
+                  <a
+                    href="https://bit.ly/4wIFnvw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:text-yellow-300"
+                  >
+                    https://bit.ly/4wIFnvw
+                  </a>
+                  . Open the link in another tab and do not close this
+                  recruitment form, because it does not autosave.
+                </p>
+                <Input
+                  id="builderCenterUsername"
+                  value={formData.builderCenterUsername}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      builderCenterUsername: e.target.value,
+                    })
+                  }
+                  placeholder="Enter your Builder Center alias or username"
                   className="text-white placeholder:text-muted-foreground"
                   required
                 />
