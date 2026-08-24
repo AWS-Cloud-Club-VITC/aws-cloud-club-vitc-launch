@@ -91,19 +91,12 @@ export function Header() {
           </div>
         </Link>
         
-        <nav className="flex items-center gap-4 sm:gap-6">
-          <Link
-            href="/events"
-            className="flex items-center gap-1.5 bg-primary-container text-black font-headline-lg px-3.5 py-1.5 text-xs sm:text-sm font-bold uppercase hover:bg-white transition-colors border border-black shadow-[2px_2px_0px_#fff]"
-          >
-            <span className="material-symbols-outlined text-sm">rocket_launch</span>
-            <span>FRONTIER AI</span>
-          </Link>
+        <nav className="flex items-center">
           <Link
             href="/joinus"
-            className="text-on-surface-variant font-label-mono text-xs sm:text-sm hover:text-primary-container transition-colors uppercase hidden sm:inline-block"
+            className="flex items-center gap-1.5 bg-primary-container text-black font-headline-lg px-3.5 py-1.5 text-xs sm:text-sm font-bold uppercase hover:bg-white transition-colors border border-black shadow-[2px_2px_0px_#fff]"
           >
-            Join Us
+            <span>Join Us</span>
           </Link>
         </nav>
       </div>
