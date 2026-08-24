@@ -39,16 +39,16 @@ export function Hero() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
               <div className="space-y-2">
                 <h3 className="font-headline-lg text-2xl sm:text-4xl text-white uppercase">
-                  FRONTIER: BUILD THE NEXT AI
+                  TECHNOVIT&apos;26: THREE EVENTS
                 </h3>
                 <p className="font-label-mono text-primary-container text-sm sm:text-base font-bold uppercase">
-                  JULY 30 &amp; 31 · ₹15,000 PRIZE POOL
+                  AUG 31 – SEP 2 · REVERSE ENGINEERING ROULETTE · CAPTURE THE FLAG · AGENT COLOSSEUM
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                <Link href="/events" className="offset-button text-lg px-6 py-3 text-center">
-                  VIEW EVENT
+                <Link href="#technovit" className="offset-button text-lg px-6 py-3 text-center">
+                  VIEW EVENTS
                 </Link>
                 <Link
                   href="/joinus"

@@ -15,7 +15,7 @@ const features = [
     number: "02",
     title: "Events & Hackathons",
     icon: CalendarDays,
-    description: "Participate in research challenges like FRONTIER, learn from AWS heroes & network with experts.",
+    description: "Compete in challenges like our technoVIT'26 lineup, learn from AWS heroes & network with experts.",
   },
   {
     number: "03",
@@ -90,17 +90,17 @@ export function EventFeatures() {
         <div className="mt-16 industrial-border bg-surface-container-lowest p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <span className="font-label-mono text-primary-container text-xs uppercase block mb-1">
-              NEXT UPCOMING EVENT
+              NEXT UPCOMING EVENTS
             </span>
             <h3 className="font-headline-lg text-3xl uppercase text-white">
-              FRONTIER - AI RESEARCH &amp; AGENTIC CHALLENGE
+              TECHNOVIT&apos;26 - THREE EVENTS, THREE DAYS
             </h3>
             <p className="text-on-surface-variant text-sm mt-1">
-              July 30 &amp; 31 · Netaji Auditorium AB-1 · Prize Pool ₹15,000
+              Aug 31 – Sep 2 · Kamaraj Auditorium &amp; AB3-501 · VIT Chennai
             </p>
           </div>
-          <Link href="/events" className="offset-button text-xl px-8 py-3 whitespace-nowrap">
-            REGISTER FOR FRONTIER
+          <Link href="#technovit" className="offset-button text-xl px-8 py-3 whitespace-nowrap">
+            VIEW TECHNOVIT EVENTS
           </Link>
         </div>
 

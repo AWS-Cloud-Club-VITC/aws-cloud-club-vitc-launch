@@ -4,6 +4,7 @@ import { SocialMedia } from "@/components/layout/SocialMedia";
 import { Hero } from "@/components/home/Hero";
 import { Countdown } from "@/components/home/Countdown";
 import { EventFeatures } from "@/components/home/EventFeatures";
+import { TechnoVITEvents } from "@/components/home/TechnoVITEvents";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           </div> */}
         {/* </div> */}
         <Hero />
+        <TechnoVITEvents />
         <EventFeatures />
         <SocialMedia />
       </main>
