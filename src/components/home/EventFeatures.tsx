@@ -34,7 +34,7 @@ export function EventFeatures() {
         <div className="mb-16 text-center">
           <div className="inline-block border-2 border-primary-container px-4 py-1 mb-4 bg-surface-container">
             <span className="font-label-mono text-primary-container uppercase tracking-widest text-xs font-bold">
-              WHAT YOU&apos;LL MASTER IN AWS CLOUD CLUB
+              WHAT YOU&apos;LL MASTER IN AWS STUDENT BUILDER GROUP
             </span>
           </div>
           <h2 className="font-display-xl text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white">

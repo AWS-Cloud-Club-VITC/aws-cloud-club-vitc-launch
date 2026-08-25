@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="border-t-border-thick border-primary-container bg-surface-container-lowest py-8 px-margin">
       <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-label-mono text-on-surface-variant">
         <p className="uppercase">
-          &copy; {new Date().getFullYear()} AWS CLOUD CLUB VIT CHENNAI. ALL RIGHTS RESERVED.
+          &copy; {new Date().getFullYear()} AWS STUDENT BUILDER GROUP VIT CHENNAI. ALL RIGHTS RESERVED.
         </p>
         <div className="flex gap-6 items-center">
           <Link href="/events" className="hover:text-primary-container uppercase transition-colors">
