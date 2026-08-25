@@ -49,9 +49,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate preferences
-    if (!preference1 || !preference2) {
+    if (!preference1) {
       return NextResponse.json(
-        { error: "Both preferences are required" },
+        { error: "Preference 1 is required" },
         { status: 400 },
       );
     }
@@ -101,15 +101,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: pref1Error }, { status: 400 });
     }
 
-    const pref2Error = validatePreference(preference2, "Preference 2");
-    if (pref2Error) {
-      return NextResponse.json({ error: pref2Error }, { status: 400 });
+    if (preference2?.dept) {
+      const pref2Error = validatePreference(preference2, "Preference 2");
+      if (pref2Error) {
+        return NextResponse.json({ error: pref2Error }, { status: 400 });
+      }
     }
 
     // Check if both preferences have the same department
     if (
       preference1.dept &&
-      preference2.dept &&
+      preference2?.dept &&
       preference1.dept === preference2.dept
     ) {
       return NextResponse.json(
@@ -166,19 +168,23 @@ export async function POST(req: NextRequest) {
           : {}),
         answers: preference1.answers,
       },
-      preference2: {
-        dept: preference2.dept,
-        ...(deptConfig[preference2.dept]?.project
-          ? { projects: preference2.projects?.trim() }
-          : {}),
-        ...(deptConfig[preference2.dept]?.projectLink
-          ? { projectLink: preference2.projectLink?.trim() }
-          : {}),
-        ...(deptConfig[preference2.dept]?.github
-          ? { githubProfile: preference2.githubProfile?.trim() }
-          : {}),
-        answers: preference2.answers,
-      },
+      ...(preference2?.dept
+        ? {
+            preference2: {
+              dept: preference2.dept,
+              ...(deptConfig[preference2.dept]?.project
+                ? { projects: preference2.projects?.trim() }
+                : {}),
+              ...(deptConfig[preference2.dept]?.projectLink
+                ? { projectLink: preference2.projectLink?.trim() }
+                : {}),
+              ...(deptConfig[preference2.dept]?.github
+                ? { githubProfile: preference2.githubProfile?.trim() }
+                : {}),
+              answers: preference2.answers,
+            },
+          }
+        : {}),
       personalQuestions: {
         q1: personalQuestions.q1.trim(),
         q2: personalQuestions.q2.trim(),
@@ -189,10 +195,14 @@ export async function POST(req: NextRequest) {
       submittedAt: submittedAt ? new Date(submittedAt) : new Date(),
     };
 
+    const updateData = preference2?.dept
+      ? { $set: recruitmentData }
+      : { $set: recruitmentData, $unset: { preference2: "" } };
+
     // Check if email exists and update OR insert new
     const result = await coll.updateOne(
       { vitEmail: { $regex: `^${normalizedEmail}$`, $options: "i" } },
-      { $set: recruitmentData },
+      updateData,
       { upsert: true },
     );
 

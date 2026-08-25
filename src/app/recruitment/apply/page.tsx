@@ -95,8 +95,10 @@ export default function RecruitmentApplyPage() {
     const p1Error = validatePreferenceHelper(formData.preference1, "Preference 1");
     if (p1Error) return p1Error;
 
-    const p2Error = validatePreferenceHelper(formData.preference2, "Preference 2");
-    if (p2Error) return p2Error;
+    if (formData.preference2.dept) {
+      const p2Error = validatePreferenceHelper(formData.preference2, "Preference 2");
+      if (p2Error) return p2Error;
+    }
 
     // Check if both preferences have the same department
     if (formData.preference1.dept && formData.preference2.dept && formData.preference1.dept === formData.preference2.dept) {
@@ -241,14 +243,14 @@ export default function RecruitmentApplyPage() {
         {/* Department */}
         <div className="space-y-2">
           <Label htmlFor={`${pref}-dept`} className="text-white">
-            Department <span className="text-yellow-500">*</span>
+            Department {pref === "preference1" && <span className="text-yellow-500">*</span>}
           </Label>
           <select
             id={`${pref}-dept`}
             value={formData[pref].dept}
             onChange={(e) => updatePreference(pref, "dept", e.target.value)}
             className="w-full h-9 rounded-md border border-input dark:bg-input/30 bg-transparent px-3 text-white text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
-            required
+            required={pref === "preference1"}
           >
             <option value="" className="bg-black text-white">Select Department</option>
             {technicalDepts.map((dept) => {

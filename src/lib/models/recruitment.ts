@@ -18,7 +18,7 @@ export interface RecruitmentFormData {
   phoneNumber: string;
   vitEmail: string;
   preference1: Preference;
-  preference2: Preference;
+  preference2?: Preference;
   personalQuestions: {
     q1: string;
     q2: string;
