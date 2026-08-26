@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { CalendarDays, Clock, MapPin, ArrowUpRight } from "lucide-react";
 
-const TECHNOVIT_URL = "https://technovit.vit.ac.in";
+const TECHNOVIT_URL = "https://chennaievents.vit.ac.in/technovit/";
 
 const events = [
   {
@@ -160,7 +160,7 @@ export function TechnoVITEvents() {
               THREE EVENTS · THREE DAYS
             </h3>
             <p className="text-on-surface-variant text-sm mt-1">
-              Register for any or all of them at technovit.vit.ac.in
+              Register for any or all of them at chennaievents.vit.ac.in/technovit
             </p>
           </div>
           <a
